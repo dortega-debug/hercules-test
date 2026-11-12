@@ -1142,32 +1142,40 @@
       },
       "time": {
         "type": "text",
-        "pos": 2,
+        "pos": 3,
         "display_name": "Hora (ej. 21:00)",
         "translatable": true
       },
       "place": {
         "type": "text",
-        "pos": 3,
+        "pos": 4,
         "display_name": "Lugar (ej. Jardín Hércules)",
         "translatable": true
       },
       "text": {
         "type": "textarea",
-        "pos": 4,
+        "pos": 5,
         "display_name": "Descripción corta",
         "translatable": true
       },
       "link_label": {
         "type": "text",
-        "pos": 5,
+        "pos": 6,
         "display_name": "Texto del botón (ej. Boletos)",
         "translatable": true
       },
       "link": {
         "type": "multilink",
-        "pos": 6,
+        "pos": 7,
         "display_name": "Enlace"
+      },
+      "image": {
+        "type": "asset",
+        "pos": 2,
+        "display_name": "Foto del evento (opcional)",
+        "filetypes": [
+          "images"
+        ]
       }
     }
   }

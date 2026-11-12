@@ -48,7 +48,7 @@ export default function Carril({ cabecera, etiqueta, anterior, siguiente, auto =
   return (
     <div>
       <div className="contenedor">
-        <div className="cabecera">
+        <div className="cabecera caja">
           <div className="flex flex-1 flex-wrap items-end justify-between gap-x-8 gap-y-3">{cabecera}</div>
           <div className="hidden shrink-0 gap-2 md:flex">
             <button type="button" aria-label={anterior} onClick={() => mover(-1)} className={flecha}>←</button>

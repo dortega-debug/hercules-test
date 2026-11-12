@@ -15,7 +15,7 @@ export default async function BeerList({ blok }) {
 
   return (
     <section {...storyblokEditable(blok)} className="seccion">
-      <div className="contenedor">
+      <div className="contenedor"><div className="caja">
         {(blok.title || blok.intro) && (
           <div className="cabecera">
             {blok.title && <h2 className="titulo-2">{blok.title}</h2>}
@@ -64,6 +64,7 @@ export default async function BeerList({ blok }) {
             );
           })}
         </ul>
+      </div>
       </div>
     </section>
   );

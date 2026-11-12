@@ -4,7 +4,7 @@ import { storyblokEditable, StoryblokServerComponent } from "@storyblok/react/rs
 export default function Cards({ blok }) {
   return (
     <section {...storyblokEditable(blok)} className="seccion">
-      <div className="contenedor">
+      <div className="contenedor"><div className="caja">
         {(blok.title || blok.intro) && (
           <div className="cabecera">
             {blok.title && (
@@ -23,6 +23,7 @@ export default function Cards({ blok }) {
             <StoryblokServerComponent blok={item} key={item._uid} />
           ))}
         </div>
+      </div>
       </div>
     </section>
   );

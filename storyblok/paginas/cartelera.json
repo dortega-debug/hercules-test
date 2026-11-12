@@ -53,6 +53,15 @@
             "linktype": "url",
             "fieldtype": "multilink",
             "cached_url": "/cartelera"
+          },
+          "image": {
+            "id": null,
+            "filename": "/fotos/comida.jpg",
+            "alt": "",
+            "fieldtype": "asset",
+            "name": "",
+            "title": "",
+            "focus": ""
           }
         },
         {
@@ -75,6 +84,15 @@
             "linktype": "url",
             "fieldtype": "multilink",
             "cached_url": "/cartelera"
+          },
+          "image": {
+            "id": null,
+            "filename": "/fotos/cerveza-espuma.jpg",
+            "alt": "",
+            "fieldtype": "asset",
+            "name": "",
+            "title": "",
+            "focus": ""
           }
         },
         {
@@ -97,6 +115,15 @@
             "linktype": "url",
             "fieldtype": "multilink",
             "cached_url": "/cartelera"
+          },
+          "image": {
+            "id": null,
+            "filename": "/fotos/jardin-noche.jpg",
+            "alt": "",
+            "fieldtype": "asset",
+            "name": "",
+            "title": "",
+            "focus": ""
           }
         }
       ]

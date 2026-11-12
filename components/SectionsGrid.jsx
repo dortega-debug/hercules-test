@@ -5,7 +5,7 @@ import { storyblokEditable, StoryblokServerComponent } from "@storyblok/react/rs
 export default function SectionsGrid({ blok }) {
   return (
     <section {...storyblokEditable(blok)} className="seccion">
-      <div className="contenedor">
+      <div className="contenedor"><div className="caja">
         {blok.title && (
           <h2 className="titulo-2 cabecera">{blok.title}</h2>
         )}
@@ -14,6 +14,7 @@ export default function SectionsGrid({ blok }) {
             <StoryblokServerComponent blok={item} key={item._uid} />
           ))}
         </div>
+      </div>
       </div>
     </section>
   );

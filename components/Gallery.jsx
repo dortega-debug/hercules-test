@@ -8,7 +8,7 @@ export default function Gallery({ blok }) {
   if (!fotos.length) return null;
   return (
     <section {...storyblokEditable(blok)} className="seccion">
-      <div className="contenedor">
+      <div className="contenedor"><div className="caja">
       <div className={`grid grid-cols-2 gap-4 ${columnas[Math.min(fotos.length, 4)] || ""}`}>
         {fotos.map((img, i) => (
           <img
@@ -22,6 +22,7 @@ export default function Gallery({ blok }) {
             className="pieza aspect-[4/3] w-full object-cover"
           />
         ))}
+      </div>
       </div>
       </div>
     </section>

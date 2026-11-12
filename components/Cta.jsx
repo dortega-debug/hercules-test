@@ -22,7 +22,7 @@ export default function Cta({ blok }) {
   const href = enlace(blok.link);
   return (
     <section {...storyblokEditable(blok)} className={`seccion ${estilo.seccion}`}>
-      <div className="contenedor grid gap-6 md:grid-cols-12 md:items-end md:gap-8">
+      <div className="contenedor"><div className="caja grid gap-6 md:grid-cols-12 md:items-end md:gap-8">
         <div className="md:col-span-7">
           <h2 className="titulo-2">{blok.title}</h2>
           {blok.text && <p className="mt-3 max-w-[46ch] opacity-80">{blok.text}</p>}
@@ -34,6 +34,7 @@ export default function Cta({ blok }) {
             </Link>
           </div>
         )}
+      </div>
       </div>
     </section>
   );

@@ -62,7 +62,7 @@ export default function Nav({ lang, menu, t }) {
   }, [abierto]);
 
   return (
-    <header className="sticky top-0 z-40 border-b border-linea bg-crema text-carbon">
+    <header className="linea-pasante sticky top-0 z-40 bg-crema text-carbon">
       {/* Tres columnas iguales: así el logo queda centrado de verdad */}
       <div className="contenedor grid h-16 grid-cols-[1fr_auto_1fr] items-center gap-4">
         <div className="justify-self-start">

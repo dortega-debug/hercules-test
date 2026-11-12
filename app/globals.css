@@ -63,19 +63,23 @@
    conecta los dos rieles del marco, más su espacio interno (32 px en celular,
    48 px en laptop). La primera sección de la página no lleva línea. */
 @utility seccion {
-  border-top: 1px solid var(--color-linea);
-  padding-block: 2rem;
-  @media (width >= 48rem) { padding-block: 3rem; }
-}
-main > * > .seccion:first-child,
-main > .seccion:first-child {
-  border-top: 0;
+  padding-block: 0.625rem;
+  @media (width >= 48rem) { padding-block: 0.625rem; }
 }
 
 /* Separación estándar entre el encabezado de una sección y su contenido */
 @utility bajo-cabecera {
   margin-top: 1.5rem;
   @media (width >= 48rem) { margin-top: 2rem; }
+}
+
+/* Caja de un componente: cada bloque de la página va encerrado en su propio
+   rectángulo, con el título, el texto y las fotos adentro. */
+@utility caja {
+  border: 1px solid var(--color-linea);
+  border-radius: var(--radius-pieza);
+  padding: 1.25rem;
+  @media (width >= 48rem) { padding: 2rem; }
 }
 
 /* Fotos y tarjetas: borde fino con las esquinas redondeadas */
@@ -246,6 +250,20 @@ h1, h2, h3 {
 .textura-oxido { background: linear-gradient(rgb(17 17 17 / 0.8), rgb(17 17 17 / 0.8)), url("/texturas/oxido.jpg") center 75% / cover; }
 .textura-muro { background: linear-gradient(rgb(17 17 17 / 0.8), rgb(17 17 17 / 0.8)), url("/texturas/muro-agrietado.jpg") center bottom / cover; }
 .textura-arena { background: linear-gradient(rgb(244 244 244 / 0.8), rgb(244 244 244 / 0.8)), url("/texturas/oxido.jpg") center 30% / cover; }
+
+/* Línea horizontal que cruza los rieles del marco y llega hasta la orilla
+   de la pantalla (la usa el menú). */
+.linea-pasante { position: relative; }
+.linea-pasante::after {
+  content: "";
+  position: absolute;
+  inset-inline: calc(-0.625rem - 1px);
+  bottom: -1px;
+  border-bottom: 1px solid var(--color-linea);
+}
+@media (width >= 48rem) {
+  .linea-pasante::after { inset-inline: calc(-1.25rem - 1px); }
+}
 
 /* Estilo crudo: sin parallax ni elementos que aparecen al hacer scroll.
    Las clases se conservan para no romper componentes que aún las usan. */
