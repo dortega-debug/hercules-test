@@ -10,7 +10,7 @@ export default function Carril({ cabecera, etiqueta, anterior, siguiente, auto =
 
   const paso = (el) => {
     const primera = el.firstElementChild;
-    return primera ? primera.getBoundingClientRect().width + 16 : el.clientWidth * 0.8;
+    return primera ? primera.getBoundingClientRect().width : el.clientWidth * 0.8;
   };
 
   const mover = (direccion) => {
@@ -48,7 +48,7 @@ export default function Carril({ cabecera, etiqueta, anterior, siguiente, auto =
   return (
     <div>
       <div className="contenedor">
-        <div className="cabecera caja">
+        <div className="cabecera">
           <div className="flex flex-1 flex-wrap items-end justify-between gap-x-8 gap-y-3">{cabecera}</div>
           <div className="hidden shrink-0 gap-2 md:flex">
             <button type="button" aria-label={anterior} onClick={() => mover(-1)} className={flecha}>←</button>
@@ -61,7 +61,7 @@ export default function Carril({ cabecera, etiqueta, anterior, siguiente, auto =
         role="region"
         aria-label={etiqueta}
         tabIndex={0}
-        className="carril bajo-cabecera flex snap-x snap-mandatory gap-4 overflow-x-auto"
+        className="flex snap-x snap-mandatory overflow-x-auto"
       >
         {children}
       </div>

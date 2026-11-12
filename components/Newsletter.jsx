@@ -7,7 +7,7 @@ export default function Newsletter({ blok }) {
   const oscuro = estilo.seccion.includes("text-crema");
   return (
     <section {...storyblokEditable(blok)} className={`${estilo.seccion} border-t border-linea py-8 md:py-10`}>
-      <div className="contenedor"><div className="caja grid gap-6 md:grid-cols-12 md:items-end md:gap-8">
+      <div className="contenedor grid gap-6 md:grid-cols-12 md:items-end md:gap-8">
         <div className="md:col-span-6">
           <h2 className="titulo-3">{blok.title}</h2>
           {blok.text && <p className="mt-2 max-w-[46ch] text-sm opacity-80">{blok.text}</p>}
@@ -20,7 +20,6 @@ export default function Newsletter({ blok }) {
             oscuro={oscuro}
           />
         </div>
-      </div>
       </div>
     </section>
   );

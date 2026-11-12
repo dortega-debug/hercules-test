@@ -57,7 +57,7 @@ function HeroMedia({ blok }) {
             {blok.subtitle && <p className="texto-lead mt-4 max-w-[36ch]">{blok.subtitle}</p>}
           </div>
           {blok.image?.filename && (
-            <div className="pieza bajo-cabecera aspect-[4/3] md:aspect-[16/9]">
+            <div className="bajo-cabecera a-rieles aspect-[4/3] border-y border-linea md:aspect-[16/9]">
               <picture className="contents">
                 {blok.image_mobile?.filename && (
                   <source media="(max-width: 767px)" srcSet={srcSetMovil(blok.image_mobile)} sizes="100vw" />

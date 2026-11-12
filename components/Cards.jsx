@@ -4,7 +4,7 @@ import { storyblokEditable, StoryblokServerComponent } from "@storyblok/react/rs
 export default function Cards({ blok }) {
   return (
     <section {...storyblokEditable(blok)} className="seccion">
-      <div className="contenedor"><div className="caja">
+      <div className="contenedor">
         {(blok.title || blok.intro) && (
           <div className="cabecera">
             {blok.title && (
@@ -18,12 +18,11 @@ export default function Cards({ blok }) {
           </div>
         )}
         {/* Cuadrícula con líneas finas entre tarjetas */}
-        <div className="bajo-cabecera grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="bajo-cabecera a-rieles grid gap-px border-y border-linea bg-linea sm:grid-cols-2 lg:grid-cols-3">
           {blok.items?.map((item) => (
             <StoryblokServerComponent blok={item} key={item._uid} />
           ))}
         </div>
-      </div>
       </div>
     </section>
   );

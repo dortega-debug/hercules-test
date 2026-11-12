@@ -15,7 +15,7 @@ export default async function BeerList({ blok }) {
 
   return (
     <section {...storyblokEditable(blok)} className="seccion">
-      <div className="contenedor"><div className="caja">
+      <div className="contenedor">
         {(blok.title || blok.intro) && (
           <div className="cabecera">
             {blok.title && <h2 className="titulo-2">{blok.title}</h2>}
@@ -24,7 +24,7 @@ export default async function BeerList({ blok }) {
         )}
 
         {/* Cuadrícula de producto con líneas finas, como una tienda */}
-        <ul className="bajo-cabecera grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4">
+        <ul className="bajo-cabecera a-rieles grid grid-cols-2 gap-px border-y border-linea bg-linea sm:grid-cols-3 lg:grid-cols-4">
           {cervezas.map(({ slug, content: c }) => {
             const color = colorSrm(c.srm);
             return (
@@ -64,7 +64,6 @@ export default async function BeerList({ blok }) {
             );
           })}
         </ul>
-      </div>
       </div>
     </section>
   );

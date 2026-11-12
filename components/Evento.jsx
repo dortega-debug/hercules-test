@@ -35,7 +35,7 @@ export default function Evento({ blok }) {
       )}
 
       {conFoto && (
-        <div className="pieza aspect-[4/3] w-full sm:aspect-square">
+        <div className="aspect-[4/3] w-full overflow-hidden border border-linea sm:aspect-square">
           <img
             src={foto(blok.image, 500)}
             srcSet={srcSet(blok.image, [300, 500, 700])}

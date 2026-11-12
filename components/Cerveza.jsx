@@ -39,7 +39,7 @@ export default function Cerveza({ blok }) {
         </Link>
 
         {/* Ficha técnica: un solo bloque con líneas finas */}
-        <div className="pieza mt-6 grid md:grid-cols-12">
+        <div className="a-rieles mt-6 grid border-y border-linea md:grid-cols-12">
           <div className="flex items-end justify-center border-b border-linea bg-arena px-6 py-10 md:col-span-5 md:border-b-0 md:border-r">
             {blok.image?.filename && (
               <img

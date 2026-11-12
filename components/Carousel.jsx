@@ -17,7 +17,7 @@ export default function Carousel({ blok }) {
   );
 
   return (
-    <section {...storyblokEditable(blok)} className="seccion">
+    <section {...storyblokEditable(blok)} className="seccion pb-0!">
       <Carril cabecera={cabecera} etiqueta={blok.title || t.fotos} anterior={t.anterior} siguiente={t.siguiente}>
         {blok.items?.map((item) => (
           <StoryblokServerComponent blok={item} key={item._uid} />

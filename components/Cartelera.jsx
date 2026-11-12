@@ -5,7 +5,7 @@ import Acciones from "./Acciones";
 export default function Cartelera({ blok }) {
   return (
     <section {...storyblokEditable(blok)} className="seccion">
-      <div className="contenedor"><div className="caja">
+      <div className="contenedor">
         {(blok.title || blok.intro) && (
           <div className="cabecera">
             {blok.title && <h2 className="titulo-2">{blok.title}</h2>}
@@ -18,7 +18,6 @@ export default function Cartelera({ blok }) {
           ))}
         </ul>
         <Acciones blok={blok} className="mt-8" />
-      </div>
       </div>
     </section>
   );

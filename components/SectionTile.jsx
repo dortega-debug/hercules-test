@@ -5,7 +5,7 @@ import Acciones from "./Acciones";
 export default function SectionTile({ blok }) {
   const logo = blok.logo?.filename;
   return (
-    <article {...storyblokEditable(blok)} className="pieza flex flex-col bg-crema p-4 md:p-6">
+    <article {...storyblokEditable(blok)} className="flex flex-col bg-crema p-5">
       <div className="flex items-start justify-between gap-6">
         <div>
           <h2 className="titulo-2">{blok.title}</h2>

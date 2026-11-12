@@ -41,7 +41,6 @@
 @utility marco {
   margin: 0.625rem auto;
   width: calc(100% - 1.25rem);
-  max-width: 1440px;
   border: 1px solid var(--color-linea);
   @media (width >= 48rem) {
     margin-block: 1.25rem;
@@ -51,9 +50,7 @@
 
 /* Márgenes laterales del contenido, dentro del marco */
 @utility contenedor {
-  margin-inline: auto;
   width: 100%;
-  max-width: 1440px;
   padding-inline: 1.25rem;
   @media (width >= 48rem) { padding-inline: 2rem; }
   @media (width >= 64rem) { padding-inline: 3rem; }
@@ -63,8 +60,13 @@
    conecta los dos rieles del marco, más su espacio interno (32 px en celular,
    48 px en laptop). La primera sección de la página no lleva línea. */
 @utility seccion {
-  padding-block: 0.625rem;
-  @media (width >= 48rem) { padding-block: 0.625rem; }
+  border-top: 1px solid var(--color-linea);
+  padding-block: 2rem;
+  @media (width >= 48rem) { padding-block: 2.5rem; }
+}
+main > * > .seccion:first-child,
+main > .seccion:first-child {
+  border-top: 0;
 }
 
 /* Separación estándar entre el encabezado de una sección y su contenido */
@@ -73,13 +75,11 @@
   @media (width >= 48rem) { margin-top: 2rem; }
 }
 
-/* Caja de un componente: cada bloque de la página va encerrado en su propio
-   rectángulo, con el título, el texto y las fotos adentro. */
-@utility caja {
-  border: 1px solid var(--color-linea);
-  border-radius: var(--radius-pieza);
-  padding: 1.25rem;
-  @media (width >= 48rem) { padding: 2rem; }
+/* Cancela los márgenes laterales: el bloque llega hasta los dos rieles */
+@utility a-rieles {
+  margin-inline: -1.25rem;
+  @media (width >= 48rem) { margin-inline: -2rem; }
+  @media (width >= 64rem) { margin-inline: -3rem; }
 }
 
 /* Fotos y tarjetas: borde fino con las esquinas redondeadas */
@@ -99,6 +99,11 @@
   gap: 0.75rem 2rem;
   padding-bottom: 1rem;
   border-bottom: 1px solid var(--color-linea);
+  /* El texto se queda en su margen, pero la línea llega hasta los rieles */
+  margin-inline: -1.25rem;
+  padding-inline: 1.25rem;
+  @media (width >= 48rem) { margin-inline: -2rem; padding-inline: 2rem; }
+  @media (width >= 64rem) { margin-inline: -3rem; padding-inline: 3rem; }
 }
 
 /* ---------- Tipografía: escala fija ---------- */
@@ -251,17 +256,20 @@ h1, h2, h3 {
 .textura-muro { background: linear-gradient(rgb(17 17 17 / 0.8), rgb(17 17 17 / 0.8)), url("/texturas/muro-agrietado.jpg") center bottom / cover; }
 .textura-arena { background: linear-gradient(rgb(244 244 244 / 0.8), rgb(244 244 244 / 0.8)), url("/texturas/oxido.jpg") center 30% / cover; }
 
-/* Línea horizontal que cruza los rieles del marco y llega hasta la orilla
-   de la pantalla (la usa el menú). */
-.linea-pasante { position: relative; }
+/* Las dos líneas horizontales del menú cruzan los rieles del marco y llegan
+   hasta la orilla de la pantalla. No lleva "position: relative": el menú ya
+   es "sticky", que de por sí sirve de referencia para estas líneas. */
+.linea-pasante::before,
 .linea-pasante::after {
   content: "";
   position: absolute;
   inset-inline: calc(-0.625rem - 1px);
-  bottom: -1px;
-  border-bottom: 1px solid var(--color-linea);
+  border-top: 1px solid var(--color-linea);
 }
+.linea-pasante::before { top: -1px; }
+.linea-pasante::after { bottom: -1px; }
 @media (width >= 48rem) {
+  .linea-pasante::before,
   .linea-pasante::after { inset-inline: calc(-1.25rem - 1px); }
 }
 

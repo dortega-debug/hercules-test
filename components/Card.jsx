@@ -5,7 +5,7 @@ import { enlace, foto, srcSet, encuadre, srcSetMovil, estiloFoto } from "@/lib/u
 export default function Card({ blok }) {
   const href = enlace(blok.link);
   return (
-    <article {...storyblokEditable(blok)} className="pieza group flex flex-col bg-crema p-4 md:p-5">
+    <article {...storyblokEditable(blok)} className="group flex flex-col bg-crema p-5">
       {blok.image?.filename && (
         <div className="overflow-hidden">
         <picture className="contents">

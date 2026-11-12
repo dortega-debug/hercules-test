@@ -25,9 +25,9 @@ export default function Feature({ blok }) {
     // Foto y texto dentro de un mismo marco de línea fina
     <section {...storyblokEditable(blok)} className="seccion">
       <div className="contenedor">
-      <div className="caja grid gap-5 p-3! md:grid-cols-12 md:p-3!">
+      <div className="a-rieles grid border-y border-linea md:grid-cols-12">
         <div
-          className={`pieza aspect-[4/3] md:row-start-1 md:col-span-7 ${derecha ? "md:col-start-6" : "md:col-start-1"}`}
+          className={`aspect-[4/3] overflow-hidden md:row-start-1 md:col-span-7 ${derecha ? "md:col-start-6" : "md:col-start-1"}`}
         >
           {blok.image?.filename && (
             <picture className="contents">
@@ -48,8 +48,8 @@ export default function Feature({ blok }) {
         </div>
 
         <Revelar
-          className={`group/tarjeta flex flex-col justify-center bg-crema px-3 py-6 md:row-start-1 md:col-span-5 md:px-6 lg:px-8 ${
-            derecha ? "md:col-start-1" : "md:col-start-8"
+          className={`group/tarjeta flex flex-col justify-center border-t border-linea bg-crema px-5 py-8 md:row-start-1 md:col-span-5 md:border-t-0 md:px-8 lg:px-10 ${
+            derecha ? "md:col-start-1 md:border-r" : "md:col-start-8 md:border-l"
           } ${logo ? "items-center text-center" : ""}`}
         >
           {logo && (

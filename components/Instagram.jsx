@@ -38,7 +38,7 @@ export default async function Instagram({ lang, perfil, t }) {
   const flechas = lang === "en" ? ["Previous", "Next"] : ["Anterior", "Siguiente"];
 
   return (
-    <section className="seccion" lang={lang}>
+    <section className="seccion pb-0!" lang={lang}>
       <Carril cabecera={cabecera} etiqueta={t.instagram} anterior={flechas[0]} siguiente={flechas[1]}>
         {posts.map((p) => {
           const img = p.sizes?.medium?.mediaUrl || p.sizes?.small?.mediaUrl || p.thumbnailUrl || p.mediaUrl;
@@ -49,13 +49,13 @@ export default async function Instagram({ lang, perfil, t }) {
               href={p.permalink}
               target="_blank"
               rel="noopener noreferrer"
-              className="pieza group block w-[70%] shrink-0 snap-start sm:w-[40%] lg:w-[23%]"
+              className="group block w-[70%] shrink-0 snap-start border-l border-linea p-5 first:border-l-0 sm:w-1/2 lg:w-1/4"
             >
               <img
                 src={img}
                 alt={texto || "Publicación de Instagram"}
                 loading="lazy"
-                className="aspect-square w-full object-cover transition-opacity duration-300 group-hover:opacity-85"
+                className="pieza aspect-square w-full object-cover transition-opacity duration-300 group-hover:opacity-85"
               />
             </a>
           );

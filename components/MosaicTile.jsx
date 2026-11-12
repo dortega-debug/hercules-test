@@ -10,11 +10,14 @@ export default function MosaicTile({ blok }) {
   const logo = blok.logo?.filename;
 
   return (
-    <Tocable
-      as="article"
-      {...storyblokEditable(blok)}
-      className="group/mosaico pieza relative aspect-[4/5] w-[78%] shrink-0 snap-start bg-carbon text-crema [-webkit-tap-highlight-color:transparent] sm:w-[46%] lg:w-[30%] xl:w-[23%]"
-    >
+    // El envoltorio ocupa toda la altura de la banda: su línea izquierda
+    // toca la del encabezado arriba y la de la siguiente sección abajo.
+    <div className="w-[80%] shrink-0 snap-start border-l border-linea p-5 first:border-l-0 sm:w-1/2 lg:w-1/3 xl:w-1/4">
+      <Tocable
+        as="article"
+        {...storyblokEditable(blok)}
+        className="group/mosaico pieza relative aspect-[4/5] bg-carbon text-crema [-webkit-tap-highlight-color:transparent]"
+      >
       {blok.image?.filename && (
         <picture className="contents">
           {blok.image_mobile?.filename && (
@@ -56,6 +59,7 @@ export default function MosaicTile({ blok }) {
           </div>
         </div>
       </div>
-    </Tocable>
+      </Tocable>
+    </div>
   );
 }
