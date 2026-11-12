@@ -7,8 +7,9 @@ export default function Gallery({ blok }) {
   const fotos = blok.images?.filter((f) => f?.filename) || [];
   if (!fotos.length) return null;
   return (
-    <section {...storyblokEditable(blok)} className="py-8 md:py-14">
-      <div className={`contenedor grid grid-cols-2 items-start gap-3 md:gap-4 ${columnas[Math.min(fotos.length, 4)] || ""}`}>
+    <section {...storyblokEditable(blok)} className="seccion">
+      <div className="contenedor">
+      <div className={`grid grid-cols-2 gap-4 ${columnas[Math.min(fotos.length, 4)] || ""}`}>
         {fotos.map((img, i) => (
           <img
             key={img.id ?? i}
@@ -18,9 +19,10 @@ export default function Gallery({ blok }) {
             alt={img.alt || ""}
             style={{ objectPosition: encuadre(img) }}
             loading="lazy"
-            className="aparece aspect-[4/3] w-full object-cover"
+            className="pieza aspect-[4/3] w-full object-cover"
           />
         ))}
+      </div>
       </div>
     </section>
   );

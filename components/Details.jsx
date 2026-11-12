@@ -7,21 +7,21 @@ export default function Details({ blok }) {
   const href = enlace(blok.link);
   const externo = href?.startsWith("http");
   return (
-    <section {...storyblokEditable(blok)} className="py-10 md:py-16">
-      <div className="aparece contenedor grid gap-8 md:grid-cols-12 md:gap-12">
+    <section {...storyblokEditable(blok)} className="seccion">
+      <div className="contenedor grid gap-6 md:grid-cols-12 md:gap-8">
         <div className="md:col-span-4">
-          <h2 className="font-display text-[clamp(1.75rem,2.6vw,2.5rem)] leading-[1.1]">{blok.title}</h2>
+          <h2 className="titulo-2">{blok.title}</h2>
           {href && blok.link_label && (
             <Link
               href={href}
               {...(externo && { target: "_blank", rel: "noopener noreferrer" })}
-              className="mt-6 inline-block border-b border-current pb-0.5 font-medium"
+              className="boton mt-6"
             >
               {blok.link_label}
             </Link>
           )}
         </div>
-        <dl className="md:col-span-6 md:col-start-7">
+        <dl className="border-b border-linea md:col-span-7 md:col-start-6">
           {blok.rows?.map((fila) => (
             <StoryblokServerComponent blok={fila} key={fila._uid} />
           ))}

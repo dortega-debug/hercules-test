@@ -12,6 +12,7 @@
         "restrict_components": true,
         "component_whitelist": [
           "hero",
+          "cartelera",
           "venue_mosaic",
           "sections_grid",
           "feature",
@@ -84,6 +85,42 @@
         "type": "text",
         "pos": 5,
         "display_name": "Facebook (URL)"
+      },
+      "hours": {
+        "type": "textarea",
+        "display_name": "Horario (pie de página)",
+        "translatable": true,
+        "pos": 6
+      },
+      "maps_link": {
+        "type": "multilink",
+        "display_name": "Enlace de Google Maps (\"Cómo llegar\")",
+        "pos": 7
+      },
+      "phone": {
+        "type": "text",
+        "display_name": "Teléfono",
+        "pos": 8
+      },
+      "whatsapp": {
+        "type": "text",
+        "display_name": "WhatsApp (número con lada, ej. +52 442 000 0000)",
+        "pos": 9
+      },
+      "tiktok": {
+        "type": "text",
+        "display_name": "TikTok (URL completa)",
+        "pos": 10
+      },
+      "privacy_link": {
+        "type": "multilink",
+        "display_name": "Aviso de privacidad (enlace a su página)",
+        "pos": 11
+      },
+      "terms_link": {
+        "type": "multilink",
+        "display_name": "Términos y condiciones (enlace a su página)",
+        "pos": 12
       }
     }
   },
@@ -163,6 +200,22 @@
         "filetypes": [
           "images"
         ]
+      },
+      "image_mobile": {
+        "type": "asset",
+        "display_name": "Foto para celular (opcional; si la de laptop se corta en celular)",
+        "filetypes": [
+          "images"
+        ],
+        "pos": 20
+      },
+      "images_mobile": {
+        "type": "multiasset",
+        "pos": 21,
+        "display_name": "Carrusel para celular (opcional, en el mismo orden que el carrusel)",
+        "filetypes": [
+          "images"
+        ]
       }
     }
   },
@@ -239,6 +292,14 @@
         "type": "multilink",
         "pos": 4,
         "display_name": "Enlace del botón principal"
+      },
+      "image_mobile": {
+        "type": "asset",
+        "display_name": "Foto para celular (opcional; si la de laptop se corta en celular)",
+        "filetypes": [
+          "images"
+        ],
+        "pos": 20
       }
     }
   },
@@ -393,6 +454,14 @@
         "type": "multilink",
         "pos": 5,
         "display_name": "Enlace"
+      },
+      "image_mobile": {
+        "type": "asset",
+        "display_name": "Foto para celular (opcional; si la de laptop se corta en celular)",
+        "filetypes": [
+          "images"
+        ],
+        "pos": 20
       }
     }
   },
@@ -805,6 +874,14 @@
         "type": "multilink",
         "pos": 6,
         "display_name": "Enlace secundario"
+      },
+      "image_mobile": {
+        "type": "asset",
+        "display_name": "Foto para celular (opcional; si la de laptop se corta en celular)",
+        "filetypes": [
+          "images"
+        ],
+        "pos": 20
       }
     }
   },
@@ -889,6 +966,14 @@
         "type": "multilink",
         "pos": 7,
         "display_name": "Enlace del botón secundario"
+      },
+      "image_mobile": {
+        "type": "asset",
+        "display_name": "Foto para celular (opcional; si la de laptop se corta en celular)",
+        "filetypes": [
+          "images"
+        ],
+        "pos": 20
       }
     }
   },
@@ -960,13 +1045,128 @@
       },
       "link_label": {
         "type": "text",
-        "pos": 4,
-        "display_name": "Texto del botón (ej. Conocer más)",
+        "pos": 6,
+        "display_name": "Texto del botón secundario (ej. Conocer más)",
         "translatable": true
       },
       "link": {
         "type": "multilink",
+        "pos": 7,
+        "display_name": "Enlace del botón secundario"
+      },
+      "button_label": {
+        "type": "text",
+        "pos": 4,
+        "display_name": "Texto del botón principal (ej. Menú, Reservar)",
+        "translatable": true
+      },
+      "button_link": {
+        "type": "multilink",
         "pos": 5,
+        "display_name": "Enlace del botón principal"
+      },
+      "image_mobile": {
+        "type": "asset",
+        "display_name": "Foto para celular (opcional; si la de laptop se corta en celular)",
+        "filetypes": [
+          "images"
+        ],
+        "pos": 20
+      },
+      "city": {
+        "type": "text",
+        "pos": 1,
+        "display_name": "Ciudad (ej. QRO, CDMX)",
+        "translatable": true
+      }
+    }
+  },
+  {
+    "name": "cartelera",
+    "display_name": "Cartelera de eventos",
+    "is_root": false,
+    "is_nestable": true,
+    "schema": {
+      "title": {
+        "type": "text",
+        "pos": 0,
+        "display_name": "Título",
+        "translatable": true
+      },
+      "intro": {
+        "type": "textarea",
+        "pos": 1,
+        "display_name": "Introducción",
+        "translatable": true
+      },
+      "items": {
+        "type": "bloks",
+        "pos": 2,
+        "display_name": "Eventos",
+        "restrict_components": true,
+        "component_whitelist": [
+          "evento"
+        ]
+      },
+      "button_label": {
+        "type": "text",
+        "pos": 3,
+        "display_name": "Texto del botón (ej. Ver toda la cartelera)",
+        "translatable": true
+      },
+      "button_link": {
+        "type": "multilink",
+        "pos": 4,
+        "display_name": "Enlace del botón"
+      }
+    }
+  },
+  {
+    "name": "evento",
+    "display_name": "Evento",
+    "is_root": false,
+    "is_nestable": true,
+    "schema": {
+      "date": {
+        "type": "datetime",
+        "pos": 0,
+        "display_name": "Fecha",
+        "disable_time": true
+      },
+      "title": {
+        "type": "text",
+        "pos": 1,
+        "display_name": "Nombre del evento",
+        "translatable": true,
+        "required": true
+      },
+      "time": {
+        "type": "text",
+        "pos": 2,
+        "display_name": "Hora (ej. 21:00)",
+        "translatable": true
+      },
+      "place": {
+        "type": "text",
+        "pos": 3,
+        "display_name": "Lugar (ej. Jardín Hércules)",
+        "translatable": true
+      },
+      "text": {
+        "type": "textarea",
+        "pos": 4,
+        "display_name": "Descripción corta",
+        "translatable": true
+      },
+      "link_label": {
+        "type": "text",
+        "pos": 5,
+        "display_name": "Texto del botón (ej. Boletos)",
+        "translatable": true
+      },
+      "link": {
+        "type": "multilink",
+        "pos": 6,
         "display_name": "Enlace"
       }
     }

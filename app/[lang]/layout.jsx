@@ -2,6 +2,7 @@ import { notFound } from "next/navigation";
 import "../globals.css";
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
+import Instagram from "@/components/Instagram";
 import { cargarConfig } from "@/lib/contenido";
 import { enlace } from "@/lib/utilidades";
 import { esIdioma, idiomas, textos } from "@/lib/i18n";
@@ -30,13 +31,21 @@ export default async function Layout({ children, params }) {
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
         <link
           rel="stylesheet"
-          href="https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,400;0,500;1,500&display=swap"
+          href="https://fonts.googleapis.com/css2?family=Archivo:wght@200;300;400;500;700&family=Roboto+Condensed:wght@700&display=swap"
         />
       </head>
       <body>
-        <Nav lang={lang} menu={menu} t={textos[lang]} />
-        <main>{children}</main>
-        <Footer lang={lang} menu={[...menu, ...secundario]} config={config} t={textos[lang]} />
+        {/* Todo el sitio vive dentro del marco: dos líneas verticales,
+            separadas un poco de la orilla de la pantalla, que corren sin
+            cortarse desde el menú hasta el pie de página. */}
+        <div className="marco">
+          <Nav lang={lang} menu={menu} t={textos[lang]} />
+          <main>
+            {children}
+            <Instagram lang={lang} perfil={config.instagram} t={textos[lang]} />
+          </main>
+          <Footer lang={lang} config={config} t={textos[lang]} />
+        </div>
       </body>
     </html>
   );

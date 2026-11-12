@@ -1,82 +1,24 @@
 "use client";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { idiomas } from "@/lib/i18n";
-import { ALTO, ANCHO, LINEA, SILUETA } from "./hercules-icono";
-
-// Las tres rayitas clásicas del menú; al abrir se convierten en una X
-function Rayitas({ abierto }) {
-  const linea = "absolute left-0 h-[2px] w-full rounded-full bg-current transition-all duration-300";
-  return (
-    <span aria-hidden="true" className="relative block h-3.5 w-5">
-      <span className={`${linea} top-0 ${abierto ? "translate-y-[6px] rotate-45" : ""}`} />
-      <span className={`${linea} top-[6px] ${abierto ? "opacity-0" : ""}`} />
-      <span className={`${linea} top-3 ${abierto ? "-translate-y-[6px] -rotate-45" : ""}`} />
-    </span>
-  );
-}
-
-// Botón de menú: el Hércules del mural. Cerrado está vacío; al abrir el
-// menú se llena de cerveza y la línea toma el rojo ladrillo del mural.
-function IconoMenu({ abierto }) {
-  const liquido = useRef(null);
-  const nivel = useRef(0); // 0 = vacío, 1 = lleno
-
-  // El llenado se anima cuadro por cuadro con JavaScript, moviendo el
-  // atributo "transform" del rectángulo: así se ve suave en todos los
-  // navegadores, incluido Safari en iPhone.
-  useEffect(() => {
-    const desde = nivel.current;
-    const hasta = abierto ? 1 : 0;
-    const inicio = performance.now();
-    const duracion = 650;
-    let cuadro;
-    const paso = (ahora) => {
-      const t = Math.min(1, (ahora - inicio) / duracion);
-      const suave = 1 - Math.pow(1 - t, 4); // arranca rápido y frena al final
-      nivel.current = desde + (hasta - desde) * suave;
-      liquido.current?.setAttribute("transform", `translate(0 ${(1 - nivel.current) * ALTO})`);
-      if (t < 1) cuadro = requestAnimationFrame(paso);
-    };
-    cuadro = requestAnimationFrame(paso);
-    return () => cancelAnimationFrame(cuadro);
-  }, [abierto]);
-
-  return (
-    <svg viewBox={`0 0 ${ANCHO} ${ALTO}`} className="h-11 w-auto" aria-hidden="true">
-      <defs>
-        <clipPath id="hercules-menu">
-          <path d={SILUETA} />
-        </clipPath>
-      </defs>
-      <g clipPath="url(#hercules-menu)">
-        <rect ref={liquido} width={ANCHO} height={ALTO} transform={`translate(0 ${ALTO})`} style={{ fill: "var(--color-ambar)" }} />
-      </g>
-      <path
-        d={LINEA}
-        style={{ fill: abierto ? "var(--color-ladrillo)" : "currentColor", transition: "fill 300ms" }}
-      />
-    </svg>
-  );
-}
 
 // Misma página en el otro idioma: /es/hotel -> /en/hotel
 function rutaEn(ruta, lang) {
-  const resto = ruta.replace(/^\/(es|en)(?=\/|$)/, "");
-  return `/${lang}${resto}`;
+  return `/${lang}${ruta.replace(/^\/(es|en)(?=\/|$)/, "")}`;
 }
 
 function SelectorIdioma({ ruta, lang, t }) {
   return (
-    <ul aria-label={t.idioma} className="flex gap-3">
+    <ul aria-label={t.idioma} className="etiqueta flex gap-3">
       {idiomas.map((l) => (
         <li key={l}>
           <Link
             href={rutaEn(ruta, l)}
             hrefLang={l}
             aria-current={l === lang ? "true" : undefined}
-            className="uppercase opacity-60 aria-[current=true]:opacity-100 aria-[current=true]:underline decoration-1 underline-offset-6"
+            className="text-tenue hover:text-carbon aria-[current=true]:text-carbon aria-[current=true]:underline aria-[current=true]:underline-offset-4"
           >
             {l}
           </Link>
@@ -86,16 +28,30 @@ function SelectorIdioma({ ruta, lang, t }) {
   );
 }
 
+// Las tres rayitas del menú; al abrir se convierten en una X
+function Rayitas({ abierto }) {
+  const linea = "absolute left-0 h-[1.5px] w-full bg-current transition-all duration-300";
+  return (
+    <span aria-hidden="true" className="pointer-events-none relative block h-3.5 w-6">
+      <span className={`${linea} top-0 ${abierto ? "translate-y-[6px] rotate-45" : ""}`} />
+      <span className={`${linea} top-[6px] ${abierto ? "opacity-0" : ""}`} />
+      <span className={`${linea} top-3 ${abierto ? "-translate-y-[6px] -rotate-45" : ""}`} />
+    </span>
+  );
+}
+
+// Menú fijo arriba, con el logo al centro.
+// Celular: ES/EN a la izquierda, logo al centro, menú hamburguesa a la derecha.
+// Laptop: enlaces a la izquierda, logo al centro, ES/EN a la derecha.
 export default function Nav({ lang, menu, t }) {
   const ruta = usePathname();
-  const inicio = ruta === `/${lang}` || ruta === `/${lang}/home`;
   const [abierto, setAbierto] = useState(false);
 
-  // Se cierra con Escape y al pasar a pantalla de laptop
+  useEffect(() => setAbierto(false), [ruta]);
   useEffect(() => {
     if (!abierto) return;
     const conTecla = (e) => e.key === "Escape" && setAbierto(false);
-    const ancho = window.matchMedia("(min-width: 48rem)");
+    const ancho = window.matchMedia("(min-width: 64rem)");
     const conAncho = () => ancho.matches && setAbierto(false);
     window.addEventListener("keydown", conTecla);
     ancho.addEventListener("change", conAncho);
@@ -106,28 +62,18 @@ export default function Nav({ lang, menu, t }) {
   }, [abierto]);
 
   return (
-    <header
-      className={
-        inicio
-          ? `absolute inset-x-0 top-0 z-20 transition-colors duration-500 ${abierto ? "bg-crema text-carbon" : "text-crema"}`
-          : "relative bg-crema text-carbon"
-      }
-    >
-      <div className="contenedor flex items-center justify-between py-5">
-        {/* En la Home el logo grande ya está en la portada */}
-        <Link href={`/${lang}`} aria-label={t.inicio} className={inicio && !abierto ? "invisible" : ""}>
-          <span className="logo w-14" />
-        </Link>
-
-        <div className="hidden items-center gap-10 md:flex">
-          <nav aria-label="Principal">
-            <ul className="flex gap-7">
+    <header className="sticky top-0 z-40 border-b border-linea bg-crema text-carbon">
+      {/* Tres columnas iguales: así el logo queda centrado de verdad */}
+      <div className="contenedor grid h-16 grid-cols-[1fr_auto_1fr] items-center gap-4">
+        <div className="justify-self-start">
+          <nav aria-label="Principal" className="hidden lg:block">
+            <ul className="etiqueta flex gap-7">
               {menu.map((m) => (
                 <li key={m.ruta}>
                   <Link
                     href={m.ruta}
                     aria-current={ruta === m.ruta ? "page" : undefined}
-                    className="decoration-1 underline-offset-6 hover:underline aria-[current=page]:underline"
+                    className="underline-offset-4 hover:underline aria-[current=page]:underline"
                   >
                     {m.nombre}
                   </Link>
@@ -135,57 +81,52 @@ export default function Nav({ lang, menu, t }) {
               ))}
             </ul>
           </nav>
-          <SelectorIdioma ruta={ruta} lang={lang} t={t} />
+          <div className="lg:hidden">
+            <SelectorIdioma ruta={ruta} lang={lang} t={t} />
+          </div>
         </div>
 
-        {/* Botón de menú: las tres rayitas (para que se entienda que es el menú)
-            junto al Hércules, que se llena al abrir */}
-        <button
-          type="button"
-          className="-my-2 -mr-1 flex items-center gap-2.5 p-1 md:hidden"
-          aria-label={abierto ? t.cerrar : t.menu}
-          aria-expanded={abierto}
-          aria-controls="menu-movil"
-          onClick={() => setAbierto(!abierto)}
-        >
-          <Rayitas abierto={abierto} />
-          <IconoMenu abierto={abierto} />
-        </button>
+        <Link href={`/${lang}`} aria-label={t.inicio} className="justify-self-center">
+          <span className="logo w-10 md:w-11" />
+        </Link>
+
+        <div className="justify-self-end">
+          <div className="hidden lg:block">
+            <SelectorIdioma ruta={ruta} lang={lang} t={t} />
+          </div>
+          <button
+            type="button"
+            className="-mr-2 flex h-11 w-11 cursor-pointer touch-manipulation items-center justify-center [-webkit-tap-highlight-color:transparent] lg:hidden"
+            aria-label={abierto ? t.cerrar : t.menu}
+            aria-expanded={abierto}
+            aria-controls="menu-movil"
+            onClick={() => setAbierto(!abierto)}
+          >
+            <Rayitas abierto={abierto} />
+          </button>
+        </div>
       </div>
 
-      {/* Siempre está en la página; al abrir se despliega con suavidad.
-          "inert" evita que se pueda navegar con teclado cuando está cerrado. */}
+      {/* Panel del celular: lista con una línea entre cada opción */}
       <div
         id="menu-movil"
         inert={!abierto}
-        className={`grid transition-[grid-template-rows] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] md:hidden ${
-          abierto ? "grid-rows-[1fr]" : "grid-rows-[0fr]"
+        className={`grid border-linea transition-[grid-template-rows] duration-300 ease-out lg:hidden ${
+          abierto ? "grid-rows-[1fr] border-t" : "grid-rows-[0fr]"
         }`}
       >
         <div className="overflow-hidden">
-          <nav aria-label="Principal" className="contenedor pb-10 pt-4 text-carbon">
-            <ul className="flex flex-col gap-3 font-display text-3xl">
-              {menu.map((m, i) => (
-                <li
-                  key={m.ruta}
-                  // Cada opción aparece un poco después de la anterior
-                  className={`transition duration-500 ease-out ${
-                    abierto ? "translate-y-0 opacity-100" : "-translate-y-3 opacity-0"
-                  }`}
-                  style={{ transitionDelay: abierto ? `${100 + i * 50}ms` : "0ms" }}
-                >
-                  <Link href={m.ruta} onClick={() => setAbierto(false)}>
+          <nav aria-label="Principal" className="contenedor pb-4">
+            <ul>
+              {menu.map((m) => (
+                <li key={m.ruta} className="border-b border-linea last:border-b-0">
+                  <Link href={m.ruta} className="titulo-3 flex items-center justify-between py-4">
                     {m.nombre}
+                    <span aria-hidden="true">→</span>
                   </Link>
                 </li>
               ))}
             </ul>
-            <div
-              className={`mt-8 transition duration-500 ease-out ${abierto ? "opacity-100" : "opacity-0"}`}
-              style={{ transitionDelay: abierto ? `${100 + menu.length * 50}ms` : "0ms" }}
-            >
-              <SelectorIdioma ruta={ruta} lang={lang} t={t} />
-            </div>
           </nav>
         </div>
       </div>

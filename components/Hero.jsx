@@ -1,5 +1,5 @@
 import { storyblokEditable } from "@storyblok/react/rsc";
-import { foto, srcSet, encuadre } from "@/lib/utilidades";
+import { foto, srcSet, encuadre, srcSetMovil, estiloFoto } from "@/lib/utilidades";
 import HerculesScroll from "./HerculesScroll";
 import HeroFotos from "./HeroFotos";
 
@@ -15,26 +15,31 @@ const textos = {
 export default function Hero({ blok }) {
   if (blok.size !== "completa") return <HeroMedia blok={blok} />;
 
-  const lista = blok.images?.filter((f) => f?.filename).length
-    ? blok.images.filter((f) => f?.filename)
-    : [blok.image].filter((f) => f?.filename);
-  const fotos = lista.map((f) => ({
-    src: foto(f, 2200),
-    srcSet: srcSet(f),
-    alt: f.alt || "",
-    pos: encuadre(f),
-  }));
+  // Carrusel (images) o una sola foto (image). Las versiones para celular
+  // (images_mobile / image_mobile) son opcionales y van en el mismo orden.
+  const conCarrusel = blok.images?.filter((f) => f?.filename).length > 0;
+  const lista = conCarrusel ? blok.images.filter((f) => f?.filename) : [blok.image].filter((f) => f?.filename);
+  const moviles = conCarrusel ? (blok.images_mobile || []).filter((f) => f?.filename) : [blok.image_mobile];
+  const fotos = lista.map((f, k) => {
+    const movil = moviles[k]?.filename ? moviles[k] : null;
+    return {
+      src: foto(f, 2200),
+      srcSet: srcSet(f),
+      srcSetMovil: movil ? srcSetMovil(movil) : null,
+      alt: f.alt || "",
+      estilo: estiloFoto(f, movil),
+    };
+  });
 
   return (
-    <section {...storyblokEditable(blok)} className="relative h-[100svh] min-h-[560px] touch-pan-y overflow-hidden bg-carbon text-crema">
+    // Ocupa la pantalla menos la altura del menú fijo (4rem)
+    <section {...storyblokEditable(blok)} className="relative h-[calc(100svh-4rem)] min-h-[520px] touch-pan-y overflow-hidden bg-carbon text-crema">
       <HeroFotos fotos={fotos} t={textos[blok._idioma] || textos.es} />
-      {/* Sombra suave solo arriba (menú) y abajo (título) para que se lean */}
-      <div aria-hidden="true" className="pointer-events-none absolute inset-x-0 top-0 h-36 bg-gradient-to-b from-carbon/45 to-transparent" />
-      <div aria-hidden="true" className="pointer-events-none absolute inset-x-0 bottom-0 h-3/5 bg-gradient-to-t from-carbon/70 via-carbon/25 to-transparent" />
-      <div className="contenedor relative flex h-full flex-col justify-end pb-20 md:pb-24">
-        <span role="img" aria-label="Compañía Cervecera Hércules" className="logo w-24 md:w-32" />
-        <h1 className="mt-6 max-w-[18ch] font-display text-[clamp(2.25rem,5vw,4.25rem)] leading-[1]">{blok.title}</h1>
-        {blok.subtitle && <p className="mt-4 max-w-[46ch] text-lg">{blok.subtitle}</p>}
+      {/* Sombra suave solo abajo, detrás del título, para que se lea */}
+      <div aria-hidden="true" className="pointer-events-none absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-carbon/65 to-transparent" />
+      <div className="contenedor relative flex h-full flex-col justify-end pb-16 md:pb-20">
+        <h1 className="titulo-1 max-w-[16ch]">{blok.title}</h1>
+        {blok.subtitle && <p className="mt-3 max-w-[46ch] text-lg font-light">{blok.subtitle}</p>}
       </div>
     </section>
   );
@@ -43,25 +48,30 @@ export default function Hero({ blok }) {
 function HeroMedia({ blok }) {
   const conHercules = blok.hercules;
   return (
-    <section {...storyblokEditable(blok)} className="pb-8 pt-6 md:pb-12 md:pt-10">
+    <section {...storyblokEditable(blok)} className="seccion">
       <div className="contenedor">
         <div className="relative">
           {conHercules && <HerculesScroll />}
           <div className={conHercules ? "pr-24 sm:pr-36 md:pr-44 lg:pr-56" : ""}>
-            <h1 className="max-w-[16ch] font-display text-[clamp(2.5rem,6vw,5.25rem)] leading-[0.98]">{blok.title}</h1>
-            {blok.subtitle && <p className="mt-4 max-w-[44ch] text-lg text-carbon/75">{blok.subtitle}</p>}
+            <h1 className="titulo-1 max-w-[16ch]">{blok.title}</h1>
+            {blok.subtitle && <p className="texto-lead mt-4 max-w-[36ch]">{blok.subtitle}</p>}
           </div>
           {blok.image?.filename && (
-            <div className="paralaje mt-8 aspect-[4/3] md:mt-10 md:aspect-[16/9]">
-              <img
-                src={foto(blok.image, 2200)}
-                srcSet={srcSet(blok.image)}
-                sizes="(min-width: 1440px) 1312px, 100vw"
-                alt={blok.image.alt || ""}
-                style={{ objectPosition: encuadre(blok.image) }}
-                fetchPriority="high"
-                className="h-full w-full object-cover"
-              />
+            <div className="pieza bajo-cabecera aspect-[4/3] md:aspect-[16/9]">
+              <picture className="contents">
+                {blok.image_mobile?.filename && (
+                  <source media="(max-width: 767px)" srcSet={srcSetMovil(blok.image_mobile)} sizes="100vw" />
+                )}
+                <img
+                  src={foto(blok.image, 2200)}
+                  srcSet={srcSet(blok.image)}
+                  sizes="(min-width: 1440px) 1312px, 100vw"
+                  alt={blok.image.alt || ""}
+                  style={estiloFoto(blok.image, blok.image_mobile)}
+                  fetchPriority="high"
+                  className="[object-position:var(--pos-movil)] md:[object-position:var(--pos)] h-full w-full object-cover"
+                />
+              </picture>
             </div>
           )}
         </div>

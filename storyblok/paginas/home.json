@@ -138,7 +138,9 @@
             "linktype": "url",
             "fieldtype": "multilink",
             "cached_url": "/cerveceria"
-          }
+          },
+          "city": "QRO",
+          "city__i18n__en": "QRO"
         },
         {
           "_uid": "mosaic-p2",
@@ -182,7 +184,9 @@
             "linktype": "url",
             "fieldtype": "multilink",
             "cached_url": "/jardin"
-          }
+          },
+          "city": "QRO",
+          "city__i18n__en": "QRO"
         },
         {
           "_uid": "mosaic-p3",
@@ -226,7 +230,9 @@
             "linktype": "url",
             "fieldtype": "multilink",
             "cached_url": "/hotel"
-          }
+          },
+          "city": "QRO",
+          "city__i18n__en": "QRO"
         },
         {
           "_uid": "mosaic-p4",
@@ -270,7 +276,9 @@
             "linktype": "url",
             "fieldtype": "multilink",
             "cached_url": "/almacen"
-          }
+          },
+          "city": "QRO",
+          "city__i18n__en": "QRO"
         }
       ]
     },
@@ -292,13 +300,22 @@
       "text": "Hércules ocupa una fábrica textil fundada en 1846, en la colonia que lleva su nombre.",
       "text__i18n__en": "Hércules occupies a textile mill founded in 1846, in the neighborhood that bears its name.",
       "link_label": "Conoce la historia",
-      "link_label__i18n__en": "Our history",
+      "link_label__i18n__en": "Our story",
       "link": {
         "id": "",
         "url": "/historia",
         "linktype": "url",
         "fieldtype": "multilink",
         "cached_url": "/historia"
+      },
+      "button_label": "Tour histórico",
+      "button_label__i18n__en": "Historic tour",
+      "button_link": {
+        "id": "",
+        "url": "/tours#historico",
+        "linktype": "url",
+        "fieldtype": "multilink",
+        "cached_url": "/tours#historico"
       }
     },
     {
@@ -342,7 +359,9 @@
             "name": "",
             "title": "",
             "focus": ""
-          }
+          },
+          "city": "QRO",
+          "city__i18n__en": "QRO"
         },
         {
           "_uid": "mosaic-h9",
@@ -377,7 +396,9 @@
             "name": "",
             "title": "",
             "focus": ""
-          }
+          },
+          "city": "QRO",
+          "city__i18n__en": "QRO"
         },
         {
           "_uid": "mosaic-h10",
@@ -412,7 +433,9 @@
             "name": "",
             "title": "",
             "focus": ""
-          }
+          },
+          "city": "CDMX",
+          "city__i18n__en": "CDMX"
         },
         {
           "_uid": "mosaic-h11",
@@ -447,95 +470,96 @@
             "name": "",
             "title": "",
             "focus": ""
-          }
+          },
+          "city": "CDMX",
+          "city__i18n__en": "CDMX"
         }
       ]
     },
     {
-      "_uid": "carousel-r10",
-      "component": "carousel",
+      "_uid": "cartelera-home",
+      "component": "cartelera",
+      "title": "Cartelera",
+      "title__i18n__en": "What's on",
+      "intro": "Conciertos, mercados y cenas en el jardín y en la fábrica.",
+      "intro__i18n__en": "Concerts, markets and dinners in the garden and the mill.",
+      "button_label": "Ver toda la cartelera",
+      "button_label__i18n__en": "See the full calendar",
+      "button_link": {
+        "id": "",
+        "url": "/cartelera",
+        "linktype": "url",
+        "fieldtype": "multilink",
+        "cached_url": "/cartelera"
+      },
       "items": [
         {
-          "_uid": "slide-r4",
-          "component": "slide",
-          "image": {
-            "id": null,
-            "filename": "/fotos/almacen.jpg",
-            "alt": "Almacén Hércules iluminado de noche",
-            "fieldtype": "asset",
-            "name": "",
-            "title": "",
-            "focus": ""
+          "_uid": "ev-1",
+          "component": "evento",
+          "date": "2026-11-21 00:00",
+          "title": "Mercado de invierno",
+          "title__i18n__en": "Winter market",
+          "time": "12:00 a 20:00",
+          "time__i18n__en": "12:00 to 20:00",
+          "place": "Jardín Hércules",
+          "place__i18n__en": "Jardín Hércules",
+          "text": "Texto de ejemplo: de qué trata este evento.",
+          "text__i18n__en": "Sample text: what this event is about.",
+          "link_label": "Más info",
+          "link_label__i18n__en": "More info",
+          "link": {
+            "id": "",
+            "url": "/cartelera",
+            "linktype": "url",
+            "fieldtype": "multilink",
+            "cached_url": "/cartelera"
           }
         },
         {
-          "_uid": "slide-r5",
-          "component": "slide",
-          "image": {
-            "id": null,
-            "filename": "/fotos/cerveza-espuma.jpg",
-            "alt": "Cerveza recién servida",
-            "fieldtype": "asset",
-            "name": "",
-            "title": "",
-            "focus": ""
+          "_uid": "ev-2",
+          "component": "evento",
+          "date": "2026-12-05 00:00",
+          "title": "Concierto en la fábrica",
+          "title__i18n__en": "Concert at the mill",
+          "time": "21:00",
+          "time__i18n__en": "21:00",
+          "place": "Lagerbar",
+          "place__i18n__en": "Lagerbar",
+          "text": "Texto de ejemplo: de qué trata este evento.",
+          "text__i18n__en": "Sample text: what this event is about.",
+          "link_label": "Boletos",
+          "link_label__i18n__en": "Tickets",
+          "link": {
+            "id": "",
+            "url": "/cartelera",
+            "linktype": "url",
+            "fieldtype": "multilink",
+            "cached_url": "/cartelera"
           }
         },
         {
-          "_uid": "slide-r6",
-          "component": "slide",
-          "image": {
-            "id": null,
-            "filename": "/fotos/letrero.jpg",
-            "alt": "Letrero antiguo pintado a mano",
-            "fieldtype": "asset",
-            "name": "",
-            "title": "",
-            "focus": ""
-          }
-        },
-        {
-          "_uid": "slide-r7",
-          "component": "slide",
-          "image": {
-            "id": null,
-            "filename": "/fotos/comida.jpg",
-            "alt": "Comida del jardín",
-            "fieldtype": "asset",
-            "name": "",
-            "title": "",
-            "focus": ""
-          }
-        },
-        {
-          "_uid": "slide-r8",
-          "component": "slide",
-          "image": {
-            "id": null,
-            "filename": "/fotos/agave.jpg",
-            "alt": "Equipo de Hércules entre agaves",
-            "fieldtype": "asset",
-            "name": "",
-            "title": "",
-            "focus": ""
-          }
-        },
-        {
-          "_uid": "slide-r9",
-          "component": "slide",
-          "image": {
-            "id": null,
-            "filename": "/fotos/muro.jpg",
-            "alt": "Muro original de la fábrica",
-            "fieldtype": "asset",
-            "name": "",
-            "title": "",
-            "focus": ""
+          "_uid": "ev-3",
+          "component": "evento",
+          "date": "2026-12-19 00:00",
+          "title": "Cena de fin de año",
+          "title__i18n__en": "Year-end dinner",
+          "time": "20:00",
+          "time__i18n__en": "20:00",
+          "place": "Taberna Hércules",
+          "place__i18n__en": "Taberna Hércules",
+          "text": "Texto de ejemplo: de qué trata este evento.",
+          "text__i18n__en": "Sample text: what this event is about.",
+          "link_label": "Reservar",
+          "link_label__i18n__en": "Book",
+          "link": {
+            "id": "",
+            "url": "/cartelera",
+            "linktype": "url",
+            "fieldtype": "multilink",
+            "cached_url": "/cartelera"
           }
         }
-      ],
-      "title": "La fábrica en fotos",
-      "title__i18n__en": "The mill in pictures"
+      ]
     },
     {
       "_uid": "newsletter-9",

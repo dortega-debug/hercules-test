@@ -1,22 +1,28 @@
 import { storyblokEditable, StoryblokServerComponent } from "@storyblok/react/rsc";
+import Carril from "./Carril";
 
-// Mosaico de venues: fotos verticales con el nombre o logo encima.
+const textos = {
+  es: { anterior: "Anterior", siguiente: "Siguiente", lugares: "Lugares" },
+  en: { anterior: "Previous", siguiente: "Next", lugares: "Places" },
+};
+
+// Carrusel de lugares: cada foto lleva su logo encima y avanza sola.
 export default function VenueMosaic({ blok }) {
+  const t = textos[blok._idioma] || textos.es;
+  const cabecera = (
+    <>
+      {blok.title && <h2 className="titulo-2">{blok.title}</h2>}
+      {blok.intro && <p className="max-w-[46ch] text-tenue">{blok.intro}</p>}
+    </>
+  );
+
   return (
-    <section {...storyblokEditable(blok)} className="py-8 md:py-14">
-      <div className="contenedor">
-        {(blok.title || blok.intro) && (
-          <div className="mb-8 flex flex-wrap items-end justify-between gap-4 md:mb-10">
-            {blok.title && <h2 className="font-display text-[clamp(1.75rem,2.6vw,2.5rem)] leading-[1.1]">{blok.title}</h2>}
-            {blok.intro && <p className="max-w-[46ch] text-carbon/75">{blok.intro}</p>}
-          </div>
-        )}
-        <div className="grid gap-3 sm:grid-cols-2 md:gap-4 lg:grid-cols-[repeat(auto-fit,minmax(220px,1fr))]">
-          {blok.items?.map((item) => (
-            <StoryblokServerComponent blok={item} key={item._uid} />
-          ))}
-        </div>
-      </div>
+    <section {...storyblokEditable(blok)} className="seccion">
+      <Carril cabecera={cabecera} etiqueta={blok.title || t.lugares} anterior={t.anterior} siguiente={t.siguiente} auto>
+        {blok.items?.map((item) => (
+          <StoryblokServerComponent blok={item} key={item._uid} />
+        ))}
+      </Carril>
     </section>
   );
 }

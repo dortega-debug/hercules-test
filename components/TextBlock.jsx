@@ -3,22 +3,29 @@ import Acciones from "./Acciones";
 
 // "normal": título a la izquierda y texto a la derecha
 // "destacado": una frase grande, sin título
-// "centrado": formato de la Guía Web Tours: título en mayúsculas, cuerpo
-//             centrado con párrafos separados y botones abajo
+// "centrado": encabezado igual que el de Venues (título, línea) y el texto
+//             debajo, con botones al final
 export default function TextBlock({ blok }) {
+  // Todos los estilos van entre líneas finas (arriba y abajo) para que el
+  // texto quede dentro de un bloque y no "flotando" en la página.
   if (blok.style === "centrado") {
     return (
-      <section {...storyblokEditable(blok)} className="py-12 md:py-20">
-        <div className="aparece contenedor flex flex-col items-center text-center">
+      <section {...storyblokEditable(blok)} className="seccion">
+        <div className="contenedor">
+          {/* Mismo encabezado que Venues: título a la izquierda y línea debajo */}
           {blok.title && (
-            <h2 className="max-w-[24ch] font-display text-[clamp(2rem,4vw,3.25rem)] leading-[1.05]">{blok.title}</h2>
-          )}
-          {blok.body && (
-            <div className="mt-6 max-w-[58ch] text-lg leading-relaxed [&_h2]:mt-12 [&_h2]:text-[1.75rem] [&_h3]:mt-12 [&_h3]:text-[1.75rem] [&_h2+p]:mt-2 [&_h3+p]:mt-2 [&_p+p]:mt-6">
-              <StoryblokServerRichText document={blok.body} />
+            <div className="cabecera">
+              <h2 className="titulo-2">{blok.title}</h2>
             </div>
           )}
-          <Acciones blok={blok} className="mt-10 justify-center" />
+          <div className="bajo-cabecera">
+            {blok.body && (
+              <div className="max-w-[58ch] text-lg leading-snug [&_h2]:titulo-3 [&_h2]:mt-8 [&_h3]:titulo-3 [&_h3]:mt-8 [&_h2+p]:mt-2 [&_h3+p]:mt-2 [&_p+p]:mt-4">
+                <StoryblokServerRichText document={blok.body} />
+              </div>
+            )}
+            <Acciones blok={blok} className="mt-6" />
+          </div>
         </div>
       </section>
     );
@@ -26,9 +33,9 @@ export default function TextBlock({ blok }) {
 
   if (blok.style === "destacado") {
     return (
-      <section {...storyblokEditable(blok)} className="py-12 md:py-20">
+      <section {...storyblokEditable(blok)} className="seccion">
         <div className="contenedor">
-          <div className="aparece max-w-[28ch] font-display text-[clamp(1.75rem,3.2vw,2.75rem)] font-medium leading-[1.15] tracking-[-0.02em] [&_p+p]:mt-6">
+          <div className="texto-lead max-w-[32ch] py-6 md:py-10 [&_p+p]:mt-4">
             {blok.body && <StoryblokServerRichText document={blok.body} />}
           </div>
         </div>
@@ -37,18 +44,16 @@ export default function TextBlock({ blok }) {
   }
 
   return (
-    <section {...storyblokEditable(blok)} className="py-10 md:py-16">
-      <div className="aparece contenedor grid gap-6 md:grid-cols-12 md:gap-12">
-        {blok.title && (
-          <h2 className="font-display text-[clamp(1.75rem,2.6vw,2.5rem)] leading-[1.1] md:col-span-4">
-            {blok.title}
-          </h2>
-        )}
-        {blok.body && (
-          <div className="max-w-[62ch] text-carbon/85 md:col-span-6 md:col-start-7 [&_p+p]:mt-5">
-            <StoryblokServerRichText document={blok.body} />
-          </div>
-        )}
+    <section {...storyblokEditable(blok)} className="seccion">
+      <div className="contenedor">
+        <div className="grid gap-4 md:grid-cols-12 md:gap-8">
+          {blok.title && <h2 className="titulo-2 md:col-span-4">{blok.title}</h2>}
+          {blok.body && (
+            <div className="max-w-[62ch] md:col-span-7 md:col-start-6 [&_p+p]:mt-4">
+              <StoryblokServerRichText document={blok.body} />
+            </div>
+          )}
+        </div>
       </div>
     </section>
   );

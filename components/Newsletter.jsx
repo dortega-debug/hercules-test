@@ -6,11 +6,11 @@ export default function Newsletter({ blok }) {
   const estilo = fondos[blok.background] || fondos["arena-textura"];
   const oscuro = estilo.seccion.includes("text-crema");
   return (
-    <section {...storyblokEditable(blok)} className={`mt-8 py-16 md:mt-12 md:py-24 ${estilo.seccion}`}>
-      <div className="aparece contenedor grid gap-10 md:grid-cols-12 md:items-end md:gap-12">
+    <section {...storyblokEditable(blok)} className={`${estilo.seccion} border-t border-linea py-8 md:py-10`}>
+      <div className="contenedor grid gap-6 md:grid-cols-12 md:items-end md:gap-8">
         <div className="md:col-span-6">
-          <h2 className="font-display text-[clamp(2rem,3.8vw,3.5rem)] leading-[1.02]">{blok.title}</h2>
-          {blok.text && <p className="mt-4 max-w-[42ch] opacity-85">{blok.text}</p>}
+          <h2 className="titulo-3">{blok.title}</h2>
+          {blok.text && <p className="mt-2 max-w-[46ch] text-sm opacity-80">{blok.text}</p>}
         </div>
         <div className="md:col-span-5 md:col-start-8">
           <NewsletterForm

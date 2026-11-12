@@ -1,9 +1,10 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
 
-// En pantallas táctiles: al apoyar el dedo sobre el elemento se marca con
-// data-activo="true" (como el hover con mouse) y se queda así hasta que se
-// toca otra cosa. Así solo hay uno abierto a la vez, como en Mikkeller.
+// En celular (pantallas sin mouse) la tarjeta se abre sola al hacer scroll:
+// se marca con data-activo="true" mientras está en la franja central de la
+// pantalla y se cierra al salir de ella. Con mouse no hace nada: ahí manda
+// el hover. Si el navegador no soporta IntersectionObserver, se queda abierta.
 export default function Tocable({ as: Etiqueta = "div", children, ...props }) {
   const ref = useRef(null);
   const [activo, setActivo] = useState(false);
@@ -11,12 +12,18 @@ export default function Tocable({ as: Etiqueta = "div", children, ...props }) {
   useEffect(() => {
     const el = ref.current;
     if (!el) return;
-    const alTocar = (e) => {
-      if (e.pointerType === "mouse") return;
-      setActivo(el.contains(e.target));
-    };
-    document.addEventListener("pointerdown", alTocar, { passive: true });
-    return () => document.removeEventListener("pointerdown", alTocar);
+    if (!window.matchMedia("(hover: none)").matches) return;
+    if (typeof IntersectionObserver !== "function") {
+      setActivo(true);
+      return;
+    }
+    // La franja central: ni arriba ni abajo de la pantalla, el 40% de en medio
+    const observador = new IntersectionObserver(
+      ([entrada]) => setActivo(entrada.isIntersecting),
+      { rootMargin: "-30% 0px -30% 0px", threshold: 0 },
+    );
+    observador.observe(el);
+    return () => observador.disconnect();
   }, []);
 
   return (

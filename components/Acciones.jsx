@@ -10,7 +10,7 @@ export default function Acciones({ blok, className = "" }) {
   if (!(principal && blok.button_label) && !(secundario && blok.link_label)) return null;
 
   return (
-    <div className={`flex flex-wrap items-center gap-x-4 gap-y-3 ${className}`}>
+    <div className={`flex flex-wrap items-center gap-2 ${className}`}>
       {principal && blok.button_label && (
         <Link
           href={principal}

@@ -143,6 +143,7 @@ const NOMBRES = {
   tours: "Tours",
   venues: "Venues",
   historia: "Historia",
+  cartelera: "Cartelera",
   configuracion: "Configuración del sitio",
 };
 

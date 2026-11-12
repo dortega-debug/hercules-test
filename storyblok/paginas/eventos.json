@@ -1,0 +1,230 @@
+{
+  "_uid": "page-eventos",
+  "component": "page",
+  "seo_title": "Cartelera | Compañía Cervecera Hércules",
+  "seo_title__i18n__en": "Events | Compañía Cervecera Hércules",
+  "seo_description": "Lanzamientos, música, tours y mercados en la fábrica Hércules y en nuestros venues.",
+  "seo_description__i18n__en": "Releases, music, tours and markets at the Hércules mill and our venues.",
+  "body": [
+    {
+      "_uid": "hero-eventos",
+      "component": "hero",
+      "size": "media",
+      "title": "Cartelera",
+      "title__i18n__en": "Events",
+      "subtitle": "Lanzamientos, música, tours y mercados en la fábrica y en nuestros venues.",
+      "subtitle__i18n__en": "Releases, music, tours and markets at the mill and our venues.",
+      "image": {
+        "id": null,
+        "filename": "/fotos/jardin-noche.jpg",
+        "alt": "Amigos en el jardín de noche",
+        "fieldtype": "asset",
+        "name": "",
+        "title": "",
+        "focus": ""
+      }
+    },
+    {
+      "_uid": "cartelera-eventos",
+      "component": "cartelera",
+      "title": "Próximos eventos",
+      "title__i18n__en": "Upcoming events",
+      "intro": "Texto de ejemplo: reemplaza estos eventos por los reales en Storyblok.",
+      "intro__i18n__en": "Sample text: replace these events with the real ones in Storyblok.",
+      "items": [
+        {
+          "_uid": "evento-1",
+          "component": "evento",
+          "date": "2026-11-14 19:00",
+          "title": "Lanzamiento de cerveza de temporada",
+          "title__i18n__en": "Seasonal beer release",
+          "category": "Lanzamiento",
+          "category__i18n__en": "Release",
+          "venue": "Jardín Hércules",
+          "city": "QRO",
+          "image": {
+            "id": null,
+            "filename": "/fotos/cerveza-grifo.jpg",
+            "alt": "",
+            "fieldtype": "asset",
+            "name": "",
+            "title": "",
+            "focus": ""
+          },
+          "button_label": "Detalles",
+          "button_label__i18n__en": "Details",
+          "button_link": {
+            "id": "",
+            "url": "/jardin",
+            "linktype": "url",
+            "fieldtype": "multilink",
+            "cached_url": "/jardin"
+          }
+        },
+        {
+          "_uid": "evento-2",
+          "component": "evento",
+          "date": "2026-11-21 20:00",
+          "title": "Noche de vinilos",
+          "title__i18n__en": "Vinyl night",
+          "category": "Música",
+          "category__i18n__en": "Music",
+          "venue": "Lagerbar",
+          "city": "CDMX",
+          "image": {
+            "id": null,
+            "filename": "/fotos/cerveza-espuma.jpg",
+            "alt": "",
+            "fieldtype": "asset",
+            "name": "",
+            "title": "",
+            "focus": ""
+          },
+          "button_label": "Detalles",
+          "button_label__i18n__en": "Details",
+          "button_link": {
+            "id": "",
+            "url": "/venues",
+            "linktype": "url",
+            "fieldtype": "multilink",
+            "cached_url": "/venues"
+          }
+        },
+        {
+          "_uid": "evento-3",
+          "component": "evento",
+          "date": "2026-11-28 12:00",
+          "title": "Tour histórico de la fábrica",
+          "title__i18n__en": "Historic mill tour",
+          "category": "Tour",
+          "category__i18n__en": "Tour",
+          "venue": "Fábrica Hércules",
+          "city": "QRO",
+          "image": {
+            "id": null,
+            "filename": "/fotos/letrero.jpg",
+            "alt": "",
+            "fieldtype": "asset",
+            "name": "",
+            "title": "",
+            "focus": ""
+          },
+          "button_label": "Reservar",
+          "button_label__i18n__en": "Book",
+          "button_link": {
+            "id": "",
+            "url": "/tours",
+            "linktype": "url",
+            "fieldtype": "multilink",
+            "cached_url": "/tours"
+          }
+        },
+        {
+          "_uid": "evento-4",
+          "component": "evento",
+          "date": "2026-12-05 17:00",
+          "title": "Mercado navideño",
+          "title__i18n__en": "Christmas market",
+          "category": "Mercado",
+          "category__i18n__en": "Market",
+          "venue": "Jardín Hércules",
+          "city": "QRO",
+          "image": {
+            "id": null,
+            "filename": "/fotos/almacen.jpg",
+            "alt": "",
+            "fieldtype": "asset",
+            "name": "",
+            "title": "",
+            "focus": ""
+          },
+          "button_label": "Detalles",
+          "button_label__i18n__en": "Details",
+          "button_link": {
+            "id": "",
+            "url": "/jardin",
+            "linktype": "url",
+            "fieldtype": "multilink",
+            "cached_url": "/jardin"
+          }
+        },
+        {
+          "_uid": "evento-5",
+          "component": "evento",
+          "date": "2026-12-12 20:00",
+          "title": "Concierto en el jardín",
+          "title__i18n__en": "Concert in the garden",
+          "category": "Música",
+          "category__i18n__en": "Music",
+          "venue": "Jardín Hércules",
+          "city": "QRO",
+          "image": {
+            "id": null,
+            "filename": "/fotos/jardin-noche.jpg",
+            "alt": "",
+            "fieldtype": "asset",
+            "name": "",
+            "title": "",
+            "focus": ""
+          },
+          "button_label": "Boletos",
+          "button_label__i18n__en": "Tickets",
+          "button_link": {
+            "id": "",
+            "url": "/jardin",
+            "linktype": "url",
+            "fieldtype": "multilink",
+            "cached_url": "/jardin"
+          }
+        },
+        {
+          "_uid": "evento-6",
+          "component": "evento",
+          "date": "2026-12-19 13:00",
+          "title": "Maridaje: cerveza y comida",
+          "title__i18n__en": "Beer and food pairing",
+          "category": "Degustación",
+          "category__i18n__en": "Tasting",
+          "venue": "Taberna Hércules",
+          "city": "CDMX",
+          "image": {
+            "id": null,
+            "filename": "/fotos/comida.jpg",
+            "alt": "",
+            "fieldtype": "asset",
+            "name": "",
+            "title": "",
+            "focus": ""
+          },
+          "button_label": "Reservar",
+          "button_label__i18n__en": "Book",
+          "button_link": {
+            "id": "",
+            "url": "/venues",
+            "linktype": "url",
+            "fieldtype": "multilink",
+            "cached_url": "/venues"
+          }
+        }
+      ]
+    },
+    {
+      "_uid": "cta-eventos",
+      "component": "cta",
+      "title": "¿Quieres organizar tu evento?",
+      "title__i18n__en": "Planning an event?",
+      "text": "Bodas, cenas y eventos de empresa dentro de la fábrica.",
+      "text__i18n__en": "Weddings, dinners and company events inside the mill.",
+      "button_label": "Conoce los venues",
+      "button_label__i18n__en": "See the venues",
+      "link": {
+        "id": "",
+        "url": "/venues",
+        "linktype": "url",
+        "fieldtype": "multilink",
+        "cached_url": "/venues"
+      },
+      "background": "arena"
+    }
+  ]
+}

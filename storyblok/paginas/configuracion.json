@@ -68,17 +68,17 @@
       "label__i18n__en": "Venues"
     },
     {
-      "_uid": "nav-68",
+      "_uid": "nav-cartelera",
       "component": "nav_link",
       "link": {
         "id": "",
-        "url": "/historia",
+        "url": "/cartelera",
         "linktype": "url",
         "fieldtype": "multilink",
-        "cached_url": "/historia"
+        "cached_url": "/cartelera"
       },
-      "label": "Historia",
-      "label__i18n__en": "History"
+      "label": "Cartelera",
+      "label__i18n__en": "What's on"
     }
   ],
   "secondary_menu": [

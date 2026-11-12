@@ -50,20 +50,22 @@ export default function HeroFotos({ fotos, t }) {
     <>
       <span ref={ancla} hidden />
       {fotos.map((f, k) => (
-        <img
-          key={f.src}
-          src={f.src}
-          srcSet={f.srcSet}
-          sizes="100vw"
-          alt={k === actual ? f.alt : ""}
-          aria-hidden={k !== actual}
-          fetchPriority={k === 0 ? "high" : "low"}
-          loading="eager"
-          style={{ objectPosition: f.pos }}
-          className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-[1200ms] ease-in-out ${
-            k === actual ? "opacity-100" : "opacity-0"
-          }`}
-        />
+        <picture key={f.src} className="contents">
+          {f.srcSetMovil && <source media="(max-width: 767px)" srcSet={f.srcSetMovil} sizes="100vw" />}
+          <img
+            src={f.src}
+            srcSet={f.srcSet}
+            sizes="100vw"
+            alt={k === actual ? f.alt : ""}
+            aria-hidden={k !== actual}
+            fetchPriority={k === 0 ? "high" : "low"}
+            loading="eager"
+            style={f.estilo}
+            className={`absolute inset-0 h-full w-full object-cover [object-position:var(--pos-movil)] transition-opacity duration-[1200ms] ease-in-out md:[object-position:var(--pos)] ${
+              k === actual ? "opacity-100" : "opacity-0"
+            }`}
+          />
+        </picture>
       ))}
 
       {varias && (

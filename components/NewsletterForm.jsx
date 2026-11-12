@@ -20,7 +20,7 @@ export default function NewsletterForm({ boton, placeholder, gracias, oscuro }) 
         e.preventDefault();
         setEnviado(true);
       }}
-      className="flex flex-col gap-3 sm:flex-row"
+      className="flex flex-col sm:flex-row"
     >
       <input
         type="email"
@@ -28,7 +28,7 @@ export default function NewsletterForm({ boton, placeholder, gracias, oscuro }) 
         autoComplete="email"
         aria-label={placeholder}
         placeholder={placeholder}
-        className="min-w-0 flex-1 border-b border-current bg-transparent py-3 text-lg placeholder:text-current placeholder:opacity-50 focus:outline-none focus-visible:border-b-2"
+        className="min-h-11 min-w-0 flex-1 border border-carbon bg-crema px-4 py-2.5 text-carbon placeholder:text-tenue focus:outline-none focus-visible:ring-2 focus-visible:ring-carbon sm:border-r-0"
       />
       <button className="boton">
         {boton}

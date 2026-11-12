@@ -11,13 +11,13 @@ export default function Carousel({ blok }) {
   const t = textos[blok._idioma] || textos.es;
   const cabecera = (blok.title || blok.intro) && (
     <>
-      {blok.title && <h2 className="font-display text-[clamp(1.75rem,2.6vw,2.5rem)] leading-[1.1]">{blok.title}</h2>}
-      {blok.intro && <p className="mt-3 max-w-[52ch] text-carbon/80">{blok.intro}</p>}
+      {blok.title && <h2 className="titulo-2">{blok.title}</h2>}
+      {blok.intro && <p className="max-w-[52ch] text-tenue">{blok.intro}</p>}
     </>
   );
 
   return (
-    <section {...storyblokEditable(blok)} className="py-8 md:py-14">
+    <section {...storyblokEditable(blok)} className="seccion">
       <Carril cabecera={cabecera} etiqueta={blok.title || t.fotos} anterior={t.anterior} siguiente={t.siguiente}>
         {blok.items?.map((item) => (
           <StoryblokServerComponent blok={item} key={item._uid} />
