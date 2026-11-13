@@ -9,10 +9,12 @@ export default function Cartelera({ blok }) {
         {(blok.title || blok.intro) && (
           <div className="cabecera">
             {blok.title && <h2 className="titulo-2">{blok.title}</h2>}
-            {blok.intro && <p className="max-w-[52ch] text-tenue">{blok.intro}</p>}
+            {blok.intro && <p className="texto-apoyo max-w-[52ch] text-tenue">{blok.intro}</p>}
           </div>
         )}
-        <ul className="bajo-cabecera">
+        {/* Lista vertical: cada evento separado por la misma línea, que llega
+            hasta los rieles. Si hay muchos, la lista se desplaza por dentro. */}
+        <ul className="a-rieles max-h-[36rem] overflow-y-auto">
           {blok.items?.map((item) => (
             <StoryblokServerComponent blok={item} key={item._uid} />
           ))}

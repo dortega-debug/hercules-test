@@ -4,7 +4,7 @@ import { useEffect, useRef } from "react";
 // Pista horizontal con scroll suave: en celular se desliza con el dedo,
 // en laptop también con las flechas. Con "auto" avanza sola cada 5 s y se
 // detiene cuando el visitante pasa el mouse, lo toca o usa el teclado.
-export default function Carril({ cabecera, etiqueta, anterior, siguiente, auto = false, children }) {
+export default function Carril({ cabecera, etiqueta, anterior, siguiente, auto = false, anchos = "", children }) {
   const pista = useRef(null);
   const quieto = useRef(false);
 
@@ -43,14 +43,14 @@ export default function Carril({ cabecera, etiqueta, anterior, siguiente, auto =
     };
   }, [auto]);
 
-  const flecha = "flex size-11 items-center justify-center rounded-[--radius-pieza] border border-carbon bg-crema transition-colors hover:bg-carbon hover:text-crema";
+  const flecha = "boton size-11 px-0";
 
   return (
     <div>
       <div className="contenedor">
         <div className="cabecera">
-          <div className="flex flex-1 flex-wrap items-end justify-between gap-x-8 gap-y-3">{cabecera}</div>
-          <div className="hidden shrink-0 gap-2 md:flex">
+          <div className="flex flex-1 flex-wrap items-center justify-between gap-x-8 gap-y-3">{cabecera}</div>
+          <div className="flex shrink-0 gap-2">
             <button type="button" aria-label={anterior} onClick={() => mover(-1)} className={flecha}>←</button>
             <button type="button" aria-label={siguiente} onClick={() => mover(1)} className={flecha}>→</button>
           </div>
@@ -61,7 +61,7 @@ export default function Carril({ cabecera, etiqueta, anterior, siguiente, auto =
         role="region"
         aria-label={etiqueta}
         tabIndex={0}
-        className="flex snap-x snap-mandatory overflow-x-auto"
+        className={`flex snap-x snap-mandatory overflow-x-auto ${anchos}`}
       >
         {children}
       </div>

@@ -31,7 +31,7 @@ export default async function Layout({ children, params }) {
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
         <link
           rel="stylesheet"
-          href="https://fonts.googleapis.com/css2?family=Archivo:wght@200;300;400;500;700&family=Roboto+Condensed:wght@700&display=swap"
+          href="https://fonts.googleapis.com/css2?family=Archivo:wght@100;200;400;700&family=Roboto+Condensed:wght@700&display=swap"
         />
       </head>
       <body>

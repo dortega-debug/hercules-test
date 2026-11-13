@@ -86,7 +86,15 @@ export default function Nav({ lang, menu, t }) {
           </div>
         </div>
 
-        <Link href={`/${lang}`} aria-label={t.inicio} className="justify-self-center">
+        {/* Si ya estás en la portada, el logo sube al principio de la página */}
+        <Link
+          href={`/${lang}`}
+          aria-label={t.inicio}
+          className="justify-self-center"
+          onClick={() => {
+            if (ruta === `/${lang}`) window.scrollTo({ top: 0, behavior: "smooth" });
+          }}
+        >
           <span className="logo w-10 md:w-11" />
         </Link>
 

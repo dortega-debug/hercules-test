@@ -16,7 +16,7 @@ export default function Feature({ blok }) {
 
   const cuerpo = (
     <>
-      {blok.text && <p className={`max-w-[40ch] pt-3 text-tenue ${logo ? "mx-auto" : ""}`}>{blok.text}</p>}
+      {blok.text && <p className={`texto-apoyo max-w-[40ch] pt-3 text-tenue ${logo ? "mx-auto" : ""}`}>{blok.text}</p>}
       <Acciones blok={blok} className={`pb-1 pt-6 ${logo ? "justify-center" : ""}`} />
     </>
   );
@@ -25,7 +25,7 @@ export default function Feature({ blok }) {
     // Foto y texto dentro de un mismo marco de línea fina
     <section {...storyblokEditable(blok)} className="seccion">
       <div className="contenedor">
-      <div className="a-rieles grid border-y border-linea md:grid-cols-12">
+      <div className="a-rieles grid md:grid-cols-12">
         <div
           className={`aspect-[4/3] overflow-hidden md:row-start-1 md:col-span-7 ${derecha ? "md:col-start-6" : "md:col-start-1"}`}
         >

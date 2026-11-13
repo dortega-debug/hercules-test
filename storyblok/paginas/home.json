@@ -280,7 +280,8 @@
           "city": "QRO",
           "city__i18n__en": "QRO"
         }
-      ]
+      ],
+      "display": "cuadricula"
     },
     {
       "_uid": "feature-r17",
@@ -474,7 +475,8 @@
           "city": "CDMX",
           "city__i18n__en": "CDMX"
         }
-      ]
+      ],
+      "display": "carrusel"
     },
     {
       "_uid": "cartelera-home",

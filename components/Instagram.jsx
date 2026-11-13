@@ -39,7 +39,7 @@ export default async function Instagram({ lang, perfil, t }) {
 
   return (
     <section className="seccion pb-0!" lang={lang}>
-      <Carril cabecera={cabecera} etiqueta={t.instagram} anterior={flechas[0]} siguiente={flechas[1]}>
+      <Carril anchos="[&>*+*]:border-l" cabecera={cabecera} etiqueta={t.instagram} anterior={flechas[0]} siguiente={flechas[1]}>
         {posts.map((p) => {
           const img = p.sizes?.medium?.mediaUrl || p.sizes?.small?.mediaUrl || p.thumbnailUrl || p.mediaUrl;
           const texto = (p.caption || "").split("\n")[0].slice(0, 120);
@@ -49,7 +49,7 @@ export default async function Instagram({ lang, perfil, t }) {
               href={p.permalink}
               target="_blank"
               rel="noopener noreferrer"
-              className="group block w-[70%] shrink-0 snap-start border-l border-linea p-5 first:border-l-0 sm:w-1/2 lg:w-1/4"
+              className="celda-tarjeta group block w-full shrink-0 snap-start sm:w-1/2 lg:w-1/4"
             >
               <img
                 src={img}

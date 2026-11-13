@@ -20,7 +20,7 @@ export default function TextBlock({ blok }) {
           )}
           <div className="bajo-cabecera">
             {blok.body && (
-              <div className="max-w-[58ch] text-lg leading-snug [&_h2]:titulo-3 [&_h2]:mt-8 [&_h3]:titulo-3 [&_h3]:mt-8 [&_h2+p]:mt-2 [&_h3+p]:mt-2 [&_p+p]:mt-4">
+              <div className="texto-apoyo max-w-[58ch] text-lg [&_h2]:titulo-3 [&_h2]:mt-8 [&_h3]:titulo-3 [&_h3]:mt-8 [&_h2+p]:mt-2 [&_h3+p]:mt-2 [&_p+p]:mt-4">
                 <StoryblokServerRichText document={blok.body} />
               </div>
             )}

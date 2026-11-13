@@ -19,7 +19,7 @@ export default async function BeerList({ blok }) {
         {(blok.title || blok.intro) && (
           <div className="cabecera">
             {blok.title && <h2 className="titulo-2">{blok.title}</h2>}
-            {blok.intro && <p className="max-w-[52ch] text-tenue">{blok.intro}</p>}
+            {blok.intro && <p className="texto-apoyo max-w-[52ch] text-tenue">{blok.intro}</p>}
           </div>
         )}
 

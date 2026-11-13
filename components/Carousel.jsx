@@ -12,13 +12,13 @@ export default function Carousel({ blok }) {
   const cabecera = (blok.title || blok.intro) && (
     <>
       {blok.title && <h2 className="titulo-2">{blok.title}</h2>}
-      {blok.intro && <p className="max-w-[52ch] text-tenue">{blok.intro}</p>}
+      {blok.intro && <p className="texto-apoyo max-w-[52ch] text-tenue">{blok.intro}</p>}
     </>
   );
 
   return (
     <section {...storyblokEditable(blok)} className="seccion pb-0!">
-      <Carril cabecera={cabecera} etiqueta={blok.title || t.fotos} anterior={t.anterior} siguiente={t.siguiente}>
+      <Carril anchos="[&>*+*]:border-l" cabecera={cabecera} etiqueta={blok.title || t.fotos} anterior={t.anterior} siguiente={t.siguiente}>
         {blok.items?.map((item) => (
           <StoryblokServerComponent blok={item} key={item._uid} />
         ))}

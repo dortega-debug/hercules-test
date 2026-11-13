@@ -121,6 +121,21 @@
         "type": "multilink",
         "display_name": "Términos y condiciones (enlace a su página)",
         "pos": 12
+      },
+      "faq_link": {
+        "type": "multilink",
+        "pos": 13,
+        "display_name": "Preguntas frecuentes (enlace a su página)"
+      },
+      "contact_link": {
+        "type": "multilink",
+        "pos": 14,
+        "display_name": "Contacto (enlace a su página)"
+      },
+      "billing_link": {
+        "type": "multilink",
+        "pos": 15,
+        "display_name": "Facturación (enlace a su página)"
       }
     }
   },
@@ -1002,6 +1017,22 @@
         "restrict_components": true,
         "component_whitelist": [
           "mosaic_tile"
+        ]
+      },
+      "display": {
+        "type": "option",
+        "pos": 1,
+        "display_name": "Cómo se muestra",
+        "default_value": "cuadricula",
+        "options": [
+          {
+            "name": "Carrusel (se desliza)",
+            "value": "carrusel"
+          },
+          {
+            "name": "Cuadrícula (todas a la vista)",
+            "value": "cuadricula"
+          }
         ]
       }
     }

@@ -31,6 +31,14 @@
 
   /* Esquinas redondeadas de fotos y tarjetas */
   --radius-pieza: 0.375rem;
+
+  /* Espacio entre una línea y el texto que tiene arriba o abajo */
+  --espacio-linea: 1.25rem;
+  /* Aire entre el borde de una tarjeta con foto y su contenedor */
+  --espacio-tarjeta: 0.75rem;
+  /* Las mayúsculas dejan un hueco bajo la línea base, así que el título se
+     baja un poco para que se vea a la mitad de su banda */
+  --ajuste-optico: 0.375rem;
 }
 
 /* ---------- Espacios: una sola regla para todo el sitio ---------- */
@@ -42,6 +50,8 @@
   margin: 0.625rem auto;
   width: calc(100% - 1.25rem);
   border: 1px solid var(--color-linea);
+  /* Arriba no lleva línea: la dibuja el menú, que se queda fija al hacer scroll */
+  border-top: 0;
   @media (width >= 48rem) {
     margin-block: 1.25rem;
     width: calc(100% - 2.5rem);
@@ -61,8 +71,7 @@
    48 px en laptop). La primera sección de la página no lleva línea. */
 @utility seccion {
   border-top: 1px solid var(--color-linea);
-  padding-block: 2rem;
-  @media (width >= 48rem) { padding-block: 2.5rem; }
+  padding-block: var(--espacio-linea);
 }
 main > * > .seccion:first-child,
 main > .seccion:first-child {
@@ -71,8 +80,7 @@ main > .seccion:first-child {
 
 /* Separación estándar entre el encabezado de una sección y su contenido */
 @utility bajo-cabecera {
-  margin-top: 1.5rem;
-  @media (width >= 48rem) { margin-top: 2rem; }
+  margin-top: var(--espacio-linea);
 }
 
 /* Cancela los márgenes laterales: el bloque llega hasta los dos rieles */
@@ -80,6 +88,12 @@ main > .seccion:first-child {
   margin-inline: -1.25rem;
   @media (width >= 48rem) { margin-inline: -2rem; }
   @media (width >= 64rem) { margin-inline: -3rem; }
+}
+
+/* Hueco de una tarjeta con foto dentro de su celda, igual en todo el sitio */
+@utility celda-tarjeta {
+  padding: var(--espacio-tarjeta);
+  border-color: var(--color-linea);
 }
 
 /* Fotos y tarjetas: borde fino con las esquinas redondeadas */
@@ -94,10 +108,13 @@ main > .seccion:first-child {
 @utility cabecera {
   display: flex;
   flex-wrap: wrap;
-  align-items: flex-end;
+  /* A la izquierda y centrados verticalmente entre sí */
+  align-items: center;
   justify-content: space-between;
   gap: 0.75rem 2rem;
-  padding-bottom: 1rem;
+  /* Mismo aire arriba y abajo: el título queda a la mitad de su banda */
+  padding-top: var(--ajuste-optico);
+  padding-bottom: calc(var(--espacio-linea) - var(--ajuste-optico));
   border-bottom: 1px solid var(--color-linea);
   /* El texto se queda en su margen, pero la línea llega hasta los rieles */
   margin-inline: -1.25rem;
@@ -135,10 +152,17 @@ main > .seccion:first-child {
 /* Frase grande y ligera (Archivo Thin en el moodboard) */
 @utility texto-lead {
   font-family: var(--font-sans);
-  font-weight: 200;
+  font-weight: 100;
   font-size: clamp(1.375rem, 2.4vw, 2rem);
   line-height: 1.2;
 }
+/* Texto de apoyo (h3 de la guía): Archivo Thin */
+@utility texto-apoyo {
+  font-family: var(--font-sans);
+  font-weight: 200;
+  line-height: 1.45;
+}
+
 /* Etiquetas pequeñas: ESTILO, ABV, CONTACTO… */
 @utility etiqueta {
   font-family: var(--font-sans);
@@ -161,7 +185,7 @@ html {
 body {
   font-family: var(--font-sans);
   font-size: 1rem;
-  line-height: 1.4;
+  line-height: 1.45;
   -webkit-font-smoothing: antialiased;
 }
 
@@ -171,6 +195,9 @@ h1, h2, h3 {
   text-transform: uppercase;
   line-height: 1;
 }
+
+/* Un solo interlineado para todo el texto corrido del sitio */
+p, li, dd, address { line-height: 1.45; }
 
 :focus-visible {
   outline: 2px solid currentColor;
@@ -198,12 +225,27 @@ h1, h2, h3 {
   text-transform: uppercase;
   letter-spacing: 0.06em;
   text-decoration: none;
-  transition: background-color 0.2s, color 0.2s, border-color 0.2s;
+  transition: background-color 0.25s ease, color 0.25s ease, border-color 0.25s ease;
 }
 .boton:hover,
-.boton-secundario:hover {
+.boton:focus-visible,
+.boton-secundario:hover,
+.boton-secundario:focus-visible {
   background-color: var(--color-carbon);
   color: var(--color-crema);
+  border-color: var(--color-carbon);
+}
+
+/* En fondo oscuro el negativo es al revés: el botón se vuelve claro */
+.sobre-foto .boton:hover,
+.sobre-foto .boton:focus-visible,
+.sobre-foto .boton-secundario:hover,
+.sobre-foto .boton-secundario:focus-visible,
+footer .boton:hover,
+footer .boton:focus-visible {
+  background-color: var(--color-crema);
+  color: var(--color-carbon);
+  border-color: var(--color-crema);
 }
 
 /* Sobre fotos oscuras: botón blanco; al pasar el mouse, negro */
@@ -266,7 +308,7 @@ h1, h2, h3 {
   inset-inline: calc(-0.625rem - 1px);
   border-top: 1px solid var(--color-linea);
 }
-.linea-pasante::before { top: -1px; }
+.linea-pasante::before { top: 0; }
 .linea-pasante::after { bottom: -1px; }
 @media (width >= 48rem) {
   .linea-pasante::before,

@@ -5,7 +5,7 @@ import Acciones from "./Acciones";
 // Una foto del carrusel (4:3), con título, 2 o 3 líneas y botones opcionales
 export default function Slide({ blok }) {
   return (
-    <article {...storyblokEditable(blok)} className="w-[82%] shrink-0 snap-start border-l border-linea p-5 first:border-l-0 sm:w-1/2 lg:w-1/3">
+    <article {...storyblokEditable(blok)} className="celda-tarjeta w-full shrink-0 snap-start sm:w-1/2 lg:w-1/3">
       {blok.image?.filename && (
         <picture className="contents">
           {blok.image_mobile?.filename && (

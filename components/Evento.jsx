@@ -22,7 +22,7 @@ export default function Evento({ blok }) {
     <div
       className={`grid items-center gap-x-6 gap-y-4 py-4 sm:py-5 ${
         conFoto
-          ? "sm:grid-cols-[4.5rem_9rem_1fr_auto]"
+          ? "sm:grid-cols-[4.5rem_8rem_1fr_auto]"
           : "sm:grid-cols-[4.5rem_1fr_auto]"
       }`}
     >
@@ -35,7 +35,7 @@ export default function Evento({ blok }) {
       )}
 
       {conFoto && (
-        <div className="aspect-[4/3] w-full overflow-hidden border border-linea sm:aspect-square">
+        <div className="pieza aspect-[3/4] w-32 sm:w-full">
           <img
             src={foto(blok.image, 500)}
             srcSet={srcSet(blok.image, [300, 500, 700])}
@@ -65,7 +65,7 @@ export default function Evento({ blok }) {
   );
 
   return (
-    <li {...storyblokEditable(blok)} className="border-t border-linea first:border-t-0">
+    <li {...storyblokEditable(blok)} className="border-t border-linea px-5 first:border-t-0 md:px-8 lg:px-12">
       {href ? (
         <Link href={href} className="group/evento block">
           {contenido}

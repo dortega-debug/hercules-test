@@ -135,9 +135,45 @@
       "label__i18n__en": "Blog"
     }
   ],
-  "address": "Colonia Hércules\nSantiago de Querétaro, México",
+  "address": "Av. Hércules Ote. 1, Hércules\n76069 Santiago de Querétaro, Qro.",
   "address__i18n__en": "Hércules neighborhood\nSantiago de Querétaro, Mexico",
   "instagram": "",
   "facebook": "",
-  "email": ""
+  "email": "hola@cerveceriahercules.com",
+  "contact_link": {
+    "id": "",
+    "url": "/contacto",
+    "linktype": "url",
+    "fieldtype": "multilink",
+    "cached_url": "/contacto"
+  },
+  "faq_link": {
+    "id": "",
+    "url": "/preguntas-frecuentes",
+    "linktype": "url",
+    "fieldtype": "multilink",
+    "cached_url": "/preguntas-frecuentes"
+  },
+  "billing_link": {
+    "id": "",
+    "url": "/facturacion",
+    "linktype": "url",
+    "fieldtype": "multilink",
+    "cached_url": "/facturacion"
+  },
+  "terms_link": {
+    "id": "",
+    "url": "/terminos-y-condiciones",
+    "linktype": "url",
+    "fieldtype": "multilink",
+    "cached_url": "/terminos-y-condiciones"
+  },
+  "privacy_link": {
+    "id": "",
+    "url": "/politica-de-privacidad",
+    "linktype": "url",
+    "fieldtype": "multilink",
+    "cached_url": "/politica-de-privacidad"
+  },
+  "phone": "442 000 0000"
 }

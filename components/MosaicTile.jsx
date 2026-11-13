@@ -1,23 +1,18 @@
+import Link from "next/link";
 import { storyblokEditable } from "@storyblok/react/rsc";
-import { encuadre, foto, srcSet, srcSetMovil, estiloFoto } from "@/lib/utilidades";
-import Acciones from "./Acciones";
-import Tocable from "./Tocable";
+import { enlace, foto, srcSet, srcSetMovil, estiloFoto } from "@/lib/utilidades";
 
-// Una foto del carrusel de lugares: el logo grande al centro y la ciudad
-// debajo. Con mouse, al pasar por encima; en celular, al apoyar el dedo:
-// la foto se oscurece, el logo se encoge y aparecen el texto y los botones.
+// Una tarjeta de lugar, al estilo Freitag: foto, logo al centro, la ciudad
+// debajo y una línea de acción abajo. Sin animaciones: toda la tarjeta es
+// un enlace y lo único que cambia al pasar el mouse es el velo de la foto.
 export default function MosaicTile({ blok }) {
+  const lang = blok._idioma;
+  const href = enlace(blok.button_link, lang) || enlace(blok.link, lang);
+  const accion = blok.button_label || blok.link_label;
   const logo = blok.logo?.filename;
 
-  return (
-    // El envoltorio ocupa toda la altura de la banda: su línea izquierda
-    // toca la del encabezado arriba y la de la siguiente sección abajo.
-    <div className="w-[80%] shrink-0 snap-start border-l border-linea p-5 first:border-l-0 sm:w-1/2 lg:w-1/3 xl:w-1/4">
-      <Tocable
-        as="article"
-        {...storyblokEditable(blok)}
-        className="group/mosaico pieza relative aspect-[4/5] bg-carbon text-crema [-webkit-tap-highlight-color:transparent]"
-      >
+  const contenido = (
+    <>
       {blok.image?.filename && (
         <picture className="contents">
           {blok.image_mobile?.filename && (
@@ -26,7 +21,7 @@ export default function MosaicTile({ blok }) {
           <img
             src={foto(blok.image, 900)}
             srcSet={srcSet(blok.image, [480, 900, 1300])}
-            sizes="(min-width: 1280px) 23vw, (min-width: 1024px) 30vw, (min-width: 640px) 46vw, 78vw"
+            sizes="(min-width: 1024px) 30vw, (min-width: 640px) 46vw, 80vw"
             alt=""
             style={estiloFoto(blok.image, blok.image_mobile)}
             loading="lazy"
@@ -36,30 +31,43 @@ export default function MosaicTile({ blok }) {
       )}
       <div
         aria-hidden="true"
-        className="absolute inset-0 bg-carbon/25 transition-colors duration-300 group-hover/mosaico:bg-carbon/65 group-focus-within/mosaico:bg-carbon/65 group-data-[activo=true]/mosaico:bg-carbon/65"
+        className="absolute inset-0 bg-carbon/35 transition-colors duration-300 group-hover/mosaico:bg-carbon/55"
       />
       <div className="sobre-foto relative flex h-full flex-col items-center justify-center p-6 text-center">
         {logo ? (
           <>
-            <img
-              src={logo}
-              alt=""
-              className="h-auto max-h-36 w-auto max-w-[80%] transition-[max-width,max-height] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover/mosaico:max-h-20 group-hover/mosaico:max-w-[55%] group-focus-within/mosaico:max-h-20 group-focus-within/mosaico:max-w-[55%] group-data-[activo=true]/mosaico:max-h-20 group-data-[activo=true]/mosaico:max-w-[55%]"
-            />
+            <img src={logo} alt="" className="h-auto max-h-28 w-auto max-w-[72%]" />
             <h3 className="sr-only">{blok.name}</h3>
           </>
         ) : (
           <h3 className="titulo-2">{blok.name}</h3>
         )}
         {blok.city && <p className="etiqueta mt-3 opacity-90">{blok.city}</p>}
-        <div className="grid w-full grid-rows-[0fr] transition-[grid-template-rows] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover/mosaico:grid-rows-[1fr] group-focus-within/mosaico:grid-rows-[1fr] group-data-[activo=true]/mosaico:grid-rows-[1fr]">
-          <div className="translate-y-2 overflow-hidden opacity-0 transition-[opacity,translate] duration-500 ease-out group-hover/mosaico:translate-y-0 group-hover/mosaico:opacity-100 group-hover/mosaico:delay-100 group-focus-within/mosaico:translate-y-0 group-focus-within/mosaico:opacity-100 group-data-[activo=true]/mosaico:translate-y-0 group-data-[activo=true]/mosaico:opacity-100 group-data-[activo=true]/mosaico:delay-100">
-            {blok.text && <p className="mx-auto max-w-[28ch] pt-3 text-[0.9375rem] leading-snug">{blok.text}</p>}
-            <Acciones blok={blok} className="justify-center pb-1 pt-4" />
-          </div>
-        </div>
+        {accion && (
+          <p className="etiqueta absolute inset-x-6 bottom-6 underline-offset-4 group-hover/mosaico:underline">
+            {accion} →
+          </p>
+        )}
       </div>
-      </Tocable>
+    </>
+  );
+
+  return (
+    // El envoltorio ocupa toda la altura de la banda: su línea izquierda toca
+    // la del encabezado arriba y la de la siguiente sección abajo.
+    <div className="celda-tarjeta">
+      <article
+        {...storyblokEditable(blok)}
+        className="pieza group/mosaico relative aspect-[4/5] bg-carbon text-crema"
+      >
+      {href ? (
+        <Link href={href} className="absolute inset-0">
+          {contenido}
+        </Link>
+      ) : (
+        contenido
+      )}
+      </article>
     </div>
   );
 }

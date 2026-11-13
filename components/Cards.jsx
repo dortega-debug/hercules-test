@@ -13,7 +13,7 @@ export default function Cards({ blok }) {
               </h2>
             )}
             {blok.intro && (
-              <p className="max-w-[52ch] text-tenue">{blok.intro}</p>
+              <p className="texto-apoyo max-w-[52ch] text-tenue">{blok.intro}</p>
             )}
           </div>
         )}
