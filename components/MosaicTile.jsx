@@ -11,7 +11,9 @@ export default function MosaicTile({ blok }) {
 
   return (
     <article {...storyblokEditable(blok)} className="celda-tarjeta h-full">
-      <div className="pieza group/mosaico relative aspect-[4/5] bg-carbon text-crema">
+      {/* "foto-lugar" deja que la sección decida la proporción: en la
+          cuadrícula de dos columnas las fotos van más anchas. */}
+      <div className="foto-lugar pieza group/mosaico relative aspect-[4/5] bg-carbon text-crema">
         {blok.image?.filename && (
           <picture className="contents">
             {blok.image_mobile?.filename && (
@@ -33,11 +35,17 @@ export default function MosaicTile({ blok }) {
           className="absolute inset-0 bg-carbon/50 transition-colors duration-300 group-hover/mosaico:bg-carbon/65"
         />
 
-        <div className="sobre-foto relative flex h-full flex-col items-center justify-center gap-5 p-5 text-center">
-          <div>
+        <div className="sobre-foto relative flex h-full flex-col p-4 text-center">
+          {/* El logo va al centro de la foto y el botón abajo. Sin texto el
+              logo crece, para que la tarjeta no se vea vacía. */}
+          <div className="flex flex-1 flex-col items-center justify-center">
             {logo ? (
               <>
-                <img src={logo} alt="" className="mx-auto h-auto max-h-20 w-auto max-w-[64%]" />
+                <img
+                  src={logo}
+                  alt=""
+                  className={`h-auto w-auto ${blok.text ? "max-h-24 max-w-[66%]" : "max-h-36 max-w-[80%]"}`}
+                />
                 <h3 className="sr-only">{blok.name}</h3>
               </>
             ) : (

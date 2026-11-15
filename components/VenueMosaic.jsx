@@ -32,7 +32,9 @@ export default function VenueMosaic({ blok }) {
       <section {...storyblokEditable(blok)} className="seccion pb-0!">
         <div className="contenedor">
           {(blok.title || blok.intro) && <div className="cabecera">{cabecera}</div>}
-          <div className="a-rieles grid [&>*+*]:border-t sm:grid-cols-2 sm:[&>*+*]:border-t-0 sm:[&>*:nth-child(n+3)]:border-t sm:[&>*:nth-child(even)]:border-l lg:grid-cols-4 lg:[&>*:nth-child(n+2)]:border-l lg:[&>*:nth-child(n+3)]:border-t-0">
+          {/* Dos columnas: en celular una debajo de otra, de tableta en
+              adelante dos y dos. Las líneas separan filas y columnas. */}
+          <div className="a-rieles grid [&>*+*]:border-t sm:grid-cols-2 sm:[&_.foto-lugar]:aspect-[4/3] sm:[&>*+*]:border-t-0 sm:[&>*:nth-child(n+3)]:border-t sm:[&>*:nth-child(even)]:border-l">
             {tarjetas}
           </div>
         </div>
