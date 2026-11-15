@@ -2,8 +2,10 @@ import Link from "next/link";
 import { storyblokEditable } from "@storyblok/react/rsc";
 import { enlace } from "@/lib/utilidades";
 
-const claro = "bg-carbon text-crema hover:bg-olivo";
-const oscuro = "bg-crema text-carbon hover:bg-arena";
+// "oscuro" marca los fondos sobre los que el texto va en hueso: ahí los
+// botones usan la versión clara (clase .sobre-foto).
+const claro = "";
+const oscuro = "sobre-foto";
 
 // Planos o con textura de la fábrica (ladrillo, óxido, muro)
 export const fondos = {
@@ -21,7 +23,7 @@ export default function Cta({ blok }) {
   const estilo = fondos[blok.background] || fondos.oxido;
   const href = enlace(blok.link);
   return (
-    <section {...storyblokEditable(blok)} className={`seccion ${estilo.seccion}`}>
+    <section {...storyblokEditable(blok)} className={`seccion ${estilo.seccion} ${estilo.boton}`}>
       <div className="contenedor grid gap-6 md:grid-cols-12 md:items-end md:gap-8">
         <div className="md:col-span-7">
           <h2 className="titulo-2">{blok.title}</h2>

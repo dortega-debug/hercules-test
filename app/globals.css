@@ -35,7 +35,7 @@
   /* Espacio entre una línea y el texto que tiene arriba o abajo */
   --espacio-linea: 1.25rem;
   /* Aire entre el borde de una tarjeta con foto y su contenedor */
-  --espacio-tarjeta: 0.75rem;
+  --espacio-tarjeta: 1.25rem;
   /* Las mayúsculas dejan un hueco bajo la línea base, así que el título se
      baja un poco para que se vea a la mitad de su banda */
   --ajuste-optico: 0.375rem;
@@ -204,7 +204,13 @@ p, li, dd, address { line-height: 1.45; }
   outline-offset: 3px;
 }
 
-/* ---------- Botones: blancos con línea negra; negros al pasar el mouse ---------- */
+/* ---------- Botones ----------
+   Pastilla con una flecha delante del texto. El principal va relleno en hueso
+   con el texto oscuro; el secundario solo lleva el borde. Al pasar el mouse
+   los dos cambian al color contrario (negativo). Dentro de .sobre-foto o del
+   pie de página toman la versión para fondo oscuro, sin tocar el componente.
+   Un botón que solo lleva un ícono (las flechas del carrusel) añade
+   .boton-icono para quedarse sin la flecha y redondo. */
 
 .boton,
 .boton-secundario {
@@ -213,11 +219,9 @@ p, li, dd, address { line-height: 1.45; }
   justify-content: center;
   gap: 0.5rem;
   min-height: 2.75rem; /* 44 px: área cómoda para el dedo */
-  padding: 0.625rem 1.25rem;
-  border: 1px solid var(--color-carbon);
-  border-radius: 0;
-  background-color: var(--color-crema);
-  color: var(--color-carbon);
+  padding: 0.625rem 1.5rem;
+  border: 1px solid transparent;
+  border-radius: 9999px;
   font-family: var(--font-sans);
   font-weight: 700;
   font-size: 0.8125rem;
@@ -227,37 +231,68 @@ p, li, dd, address { line-height: 1.45; }
   text-decoration: none;
   transition: background-color 0.25s ease, color 0.25s ease, border-color 0.25s ease;
 }
+.boton::before,
+.boton-secundario::before {
+  content: "→";
+  font-weight: 400;
+  /* La flecha no se lee en voz alta: es decoración */
+  speak: never;
+}
+
+/* Sobre fondo claro */
+.boton {
+  background-color: var(--color-carbon);
+  border-color: var(--color-carbon);
+  color: var(--color-crema);
+}
 .boton:hover,
-.boton:focus-visible,
+.boton:focus-visible {
+  background-color: transparent;
+  color: var(--color-carbon);
+}
+.boton-secundario {
+  background-color: transparent;
+  border-color: var(--color-carbon);
+  color: var(--color-carbon);
+}
 .boton-secundario:hover,
 .boton-secundario:focus-visible {
   background-color: var(--color-carbon);
   color: var(--color-crema);
-  border-color: var(--color-carbon);
 }
 
-/* En fondo oscuro el negativo es al revés: el botón se vuelve claro */
+/* Sobre foto o fondo oscuro: el negativo al revés */
+.sobre-foto .boton,
+footer .boton {
+  background-color: var(--color-crema);
+  border-color: var(--color-crema);
+  color: var(--color-carbon);
+}
 .sobre-foto .boton:hover,
 .sobre-foto .boton:focus-visible,
-.sobre-foto .boton-secundario:hover,
-.sobre-foto .boton-secundario:focus-visible,
 footer .boton:hover,
 footer .boton:focus-visible {
+  background-color: transparent;
+  color: var(--color-crema);
+}
+.sobre-foto .boton-secundario,
+footer .boton-secundario {
+  background-color: transparent;
+  border-color: var(--color-crema);
+  color: var(--color-crema);
+}
+.sobre-foto .boton-secundario:hover,
+.sobre-foto .boton-secundario:focus-visible,
+footer .boton-secundario:hover,
+footer .boton-secundario:focus-visible {
   background-color: var(--color-crema);
   color: var(--color-carbon);
-  border-color: var(--color-crema);
 }
 
-/* Sobre fotos oscuras: botón blanco; al pasar el mouse, negro */
-.sobre-foto .boton,
-.sobre-foto .boton-secundario {
-  border-color: var(--color-crema);
-}
-.sobre-foto .boton:hover,
-.sobre-foto .boton-secundario:hover {
-  background-color: var(--color-carbon);
-  border-color: var(--color-carbon);
-  color: var(--color-crema);
+/* Botón de solo ícono: sin flecha añadida */
+.boton-icono::before,
+.boton-icono.boton-secundario::before {
+  content: none;
 }
 
 /* Enlace de texto con flecha (enlaces secundarios, pie de página) */

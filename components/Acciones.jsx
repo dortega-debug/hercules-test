@@ -1,30 +1,33 @@
 import Link from "next/link";
 import { enlace } from "@/lib/utilidades";
 
-// Botón normal (rojo) + botón secundario (blanco), según la Guía Web Tours.
-// Ej.: "Reservar" + "Conocer más", o "Comprar ahora" + "Conocer más".
-export default function Acciones({ blok, className = "" }) {
-  const principal = enlace(blok.button_link);
-  const secundario = enlace(blok.link);
+// Los botones de cualquier bloque: el principal (relleno) y el secundario
+// (solo borde), en ese orden. Si solo se captura uno en Storyblok, se muestra
+// ese; si no hay ninguno, no se dibuja nada.
+//
+// En celular van apilados a ancho completo (más fáciles de tocar) y de tableta
+// en adelante lado a lado. El color lo decide el fondo: dentro de .sobre-foto
+// o del pie de página toman la versión clara, sin tener que indicarlo aquí.
+export default function Acciones({ blok, className = "", alineacion = "" }) {
+  const lang = blok._idioma;
+  const principal = enlace(blok.button_link, lang);
+  const secundario = enlace(blok.link, lang);
   const externo = (url) => (url?.startsWith("http") ? { target: "_blank", rel: "noopener noreferrer" } : {});
-  if (!(principal && blok.button_label) && !(secundario && blok.link_label)) return null;
+
+  const botones = [
+    principal && blok.button_label && { href: principal, texto: blok.button_label, clase: "boton" },
+    secundario && blok.link_label && { href: secundario, texto: blok.link_label, clase: "boton-secundario" },
+  ].filter(Boolean);
+
+  if (!botones.length) return null;
 
   return (
-    <div className={`flex flex-wrap items-center gap-2 ${className}`}>
-      {principal && blok.button_label && (
-        <Link
-          href={principal}
-          {...externo(principal)}
-          className="boton"
-        >
-          {blok.button_label}
+    <div className={`flex flex-col gap-2 sm:flex-row sm:flex-wrap sm:items-center ${alineacion} ${className}`}>
+      {botones.map((b) => (
+        <Link key={b.texto} href={b.href} {...externo(b.href)} className={b.clase}>
+          {b.texto}
         </Link>
-      )}
-      {secundario && blok.link_label && (
-        <Link href={secundario} {...externo(secundario)} className="boton-secundario">
-          {blok.link_label}
-        </Link>
-      )}
+      ))}
     </div>
   );
 }

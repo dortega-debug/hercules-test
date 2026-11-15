@@ -43,7 +43,7 @@ export default function Carril({ cabecera, etiqueta, anterior, siguiente, auto =
     };
   }, [auto]);
 
-  const flecha = "boton size-11 px-0";
+  const flecha = "boton boton-icono size-11 px-0";
 
   return (
     <div>

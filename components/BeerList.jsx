@@ -28,9 +28,9 @@ export default async function BeerList({ blok }) {
           {cervezas.map(({ slug, content: c }) => {
             const color = colorSrm(c.srm);
             return (
-              <li key={slug} className="pieza group/cerveza bg-crema">
+              <li key={slug} className="celda-tarjeta group/cerveza bg-crema">
                 <Link href={`/${lang}/cervezas/${slug}`} className="flex h-full flex-col">
-                  <div className="flex h-56 items-end justify-center bg-arena px-4 pb-6 pt-8 sm:h-64 lg:h-72">
+                  <div className="pieza flex h-56 items-end justify-center bg-arena px-4 pb-6 pt-8 sm:h-64 lg:h-72">
                     {c.image?.filename && (
                       <img
                         src={foto(c.image, 700)}
@@ -40,7 +40,7 @@ export default async function BeerList({ blok }) {
                       />
                     )}
                   </div>
-                  <div className="flex flex-1 flex-col border-t border-linea p-4 md:p-5">
+                  <div className="flex flex-1 flex-col pt-4">
                     <h3 className="titulo-3">{c.name}</h3>
                     {(c.style || c.abv) && (
                       <p className="etiqueta mt-2 flex items-center gap-2 text-tenue">

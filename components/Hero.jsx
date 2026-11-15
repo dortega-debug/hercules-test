@@ -57,7 +57,7 @@ function HeroMedia({ blok }) {
             {blok.subtitle && <p className="texto-lead mt-4 max-w-[36ch]">{blok.subtitle}</p>}
           </div>
           {blok.image?.filename && (
-            <div className="bajo-cabecera a-rieles aspect-[4/3] border-y border-linea md:aspect-[16/9]">
+            <div className="bajo-cabecera a-rieles celda-tarjeta">
               <picture className="contents">
                 {blok.image_mobile?.filename && (
                   <source media="(max-width: 767px)" srcSet={srcSetMovil(blok.image_mobile)} sizes="100vw" />
@@ -69,7 +69,7 @@ function HeroMedia({ blok }) {
                   alt={blok.image.alt || ""}
                   style={estiloFoto(blok.image, blok.image_mobile)}
                   fetchPriority="high"
-                  className="[object-position:var(--pos-movil)] md:[object-position:var(--pos)] h-full w-full object-cover"
+                  className="[object-position:var(--pos-movil)] md:[object-position:var(--pos)] pieza aspect-[4/3] w-full object-cover md:aspect-[16/9]"
                 />
               </picture>
             </div>

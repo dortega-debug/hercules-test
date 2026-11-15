@@ -11,16 +11,17 @@ export default function Gallery({ blok }) {
       <div className="contenedor">
       <div className={`a-rieles grid grid-cols-2 gap-px border-y border-linea bg-linea ${columnas[Math.min(fotos.length, 4)] || ""}`}>
         {fotos.map((img, i) => (
-          <img
-            key={img.id ?? i}
-            src={foto(img, 1000)}
-            srcSet={srcSet(img, [480, 1000, 1400])}
-            sizes="(min-width: 768px) 30vw, 50vw"
-            alt={img.alt || ""}
-            style={{ objectPosition: encuadre(img) }}
-            loading="lazy"
-            className="aspect-[4/3] w-full object-cover"
-          />
+          <div key={img.id ?? i} className="celda-tarjeta bg-crema">
+            <img
+              src={foto(img, 1000)}
+              srcSet={srcSet(img, [480, 1000, 1400])}
+              sizes="(min-width: 768px) 30vw, 50vw"
+              alt={img.alt || ""}
+              style={{ objectPosition: encuadre(img) }}
+              loading="lazy"
+              className="pieza aspect-[4/3] w-full object-cover"
+            />
+          </div>
         ))}
       </div>
       </div>

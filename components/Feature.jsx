@@ -17,7 +17,7 @@ export default function Feature({ blok }) {
   const cuerpo = (
     <>
       {blok.text && <p className={`texto-apoyo max-w-[40ch] pt-3 text-tenue ${logo ? "mx-auto" : ""}`}>{blok.text}</p>}
-      <Acciones blok={blok} className={`pb-1 pt-6 ${logo ? "justify-center" : ""}`} />
+      <Acciones blok={blok} className="pb-1 pt-6" alineacion={logo ? "sm:justify-center" : ""} />
     </>
   );
 
@@ -27,7 +27,7 @@ export default function Feature({ blok }) {
       <div className="contenedor">
       <div className="a-rieles grid md:grid-cols-12">
         <div
-          className={`aspect-[4/3] overflow-hidden md:row-start-1 md:col-span-7 ${derecha ? "md:col-start-6" : "md:col-start-1"}`}
+          className={`celda-tarjeta md:row-start-1 md:col-span-7 ${derecha ? "md:col-start-6" : "md:col-start-1"}`}
         >
           {blok.image?.filename && (
             <picture className="contents">
@@ -41,15 +41,15 @@ export default function Feature({ blok }) {
                 alt={blok.image.alt || ""}
                 style={estiloFoto(blok.image, blok.image_mobile)}
                 loading="lazy"
-                className="[object-position:var(--pos-movil)] md:[object-position:var(--pos)] h-full w-full object-cover"
+                className="[object-position:var(--pos-movil)] md:[object-position:var(--pos)] pieza aspect-[4/3] w-full object-cover"
               />
             </picture>
           )}
         </div>
 
         <Revelar
-          className={`group/tarjeta flex flex-col justify-center border-t border-linea bg-crema px-5 py-8 md:row-start-1 md:col-span-5 md:border-t-0 md:px-8 lg:px-10 ${
-            derecha ? "md:col-start-1 md:border-r" : "md:col-start-8 md:border-l"
+          className={`group/tarjeta flex flex-col justify-center bg-crema px-5 py-8 md:row-start-1 md:col-span-5 md:px-8 lg:px-10 ${
+            derecha ? "md:col-start-1" : "md:col-start-8"
           } ${logo ? "items-center text-center" : ""}`}
         >
           {logo && (
